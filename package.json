@@ -1,6 +1,6 @@
 {
   "name": "bitbob",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A big collection of tiny bit hacks from your tiny bit buddy!",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
@@ -28,7 +28,7 @@
     "url": "https://github.com/Torathion/bitbob/issues"
   },
   "type": "module",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.5",
     "esbuild": "^0.24.0",

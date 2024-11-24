@@ -89,8 +89,14 @@ handleScreenRes(cn.state)
 Bitbob is a collection of old bit hacks ported to javascript for faster math and faster algorithms. The following includes resources for the used algorithms.
 
 https://graphics.stanford.edu/~seander/bithacks.html
+
 https://github.com/virtyaluk/Bit-Twiddling-Hacks
+
 https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/cc6983c9ebd77c28e8ae85bc0e575360_MIT6_172F18_lec3.pdf
+
 https://brilliant.org/wiki/bit-manipulation-hacks/
+
 https://github.com/mikolalysenko/double-bits
+
 https://medium.com/@amirulislamalmamun/bitwise-hacks-21a884f80481
+

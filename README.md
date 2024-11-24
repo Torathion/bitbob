@@ -100,3 +100,6 @@ https://github.com/mikolalysenko/double-bits
 
 https://medium.com/@amirulislamalmamun/bitwise-hacks-21a884f80481
 
+---
+
+© Torathion 2024

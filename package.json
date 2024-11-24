@@ -1,7 +1,7 @@
 {
   "name": "bitbob",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "A big collection of tiny bit hacks from your tiny bit buddy!",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
   "scripts": {
@@ -19,6 +19,14 @@
     "util"
   ],
   "author": "Torathion",
+  "homepage": "https://github.com/Torathion/bitbob",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Torathion/bitbob.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Torathion/bitbob/issues"
+  },
   "type": "module",
   "license": "ISC",
   "devDependencies": {

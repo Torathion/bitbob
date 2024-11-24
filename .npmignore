@@ -1,0 +1,6 @@
+*
+!dist/*.js
+!package.json
+!pnpm-lock.yaml
+!README.md
+!LICENSE.md

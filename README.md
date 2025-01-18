@@ -3,6 +3,7 @@
 [![NPM license](https://img.shields.io/npm/l/bitbob.svg)](https://www.npmjs.com/package/bitbob)
 [![NPM version](https://img.shields.io/npm/v/bitbob.svg)](https://www.npmjs.com/package/bitbob)
 [![NPM downloads](https://img.shields.io/npm/dm/bitbob.svg)](http://www.npmtrends.com/bitbob)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/bitbob?style=flat)](https://bundlephobia.com/result?p=bitbob)
 
 Speed up your math with smart little bit hacks from your smart little bit buddy!
 

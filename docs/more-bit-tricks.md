@@ -132,4 +132,4 @@ Note: There are no algorithms to divide by arbitrary numbers (AFAIK).
 
 | Math              |  Algorithm                           |
 |-------------------|--------------------------------------|
-| `Math.trunc`      | `x | 0`                             |
+| `Math.trunc`      | `x \| 0`                             |

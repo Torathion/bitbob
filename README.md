@@ -3,6 +3,7 @@
 [![NPM license](https://img.shields.io/npm/l/bitbob.svg)](https://www.npmjs.com/package/bitbob)
 [![NPM version](https://img.shields.io/npm/v/bitbob.svg)](https://www.npmjs.com/package/bitbob)
 [![NPM downloads](https://img.shields.io/npm/dm/bitbob.svg)](http://www.npmtrends.com/bitbob)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/bitbob?style=flat)](https://bundlephobia.com/result?p=bitbob)
 
 Speed up your math with smart little bit hacks from your smart little bit buddy!
 
@@ -26,7 +27,7 @@ export default function includes(a: string[], b: string[]): boolean {
 }
 ```
 
-Some bit hacks are so small that they are hard to use them as a function because of typical function overhead. Therefore, here is a compiled list of other tiny math optimizations through bit hacks you can do: [List](https://github.com/Torathion/bitbob/docs/more-bit-tricks.md)
+Some bit hacks are so small that they are hard to use them as a function because of typical function overhead. Therefore, here is a compiled list of other tiny math optimizations through bit hacks you can do: [List](https://github.com/Torathion/bitbob/blob/main/docs/more-bit-tricks.md)
 
 ### Reduce your memory usage!
 

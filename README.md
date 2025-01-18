@@ -26,7 +26,7 @@ export default function includes(a: string[], b: string[]): boolean {
 }
 ```
 
-Some bit hacks are so small that they are hard to use them as a function because of typical function overhead. Therefore, here is a compiled list of other tiny math optimizations through bit hacks you can do: [List](https://github.com/Torathion/bitbob/docs/more-bit-tricks.md)
+Some bit hacks are so small that they are hard to use them as a function because of typical function overhead. Therefore, here is a compiled list of other tiny math optimizations through bit hacks you can do: [List](https://github.com/Torathion/bitbob/blob/main/docs/more-bit-tricks.md)
 
 ### Reduce your memory usage!
 

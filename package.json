@@ -2,8 +2,15 @@
   "name": "bitbob",
   "version": "1.0.4",
   "description": "A big collection of tiny bit hacks from your tiny bit buddy!",
-  "main": "./dist/index.js",
   "types": "./index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "node esbuild.config.js",
     "lint": "eslint src",

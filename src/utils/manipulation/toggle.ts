@@ -6,5 +6,5 @@
  *  @returns the modified number.
  */
 export default function toggle(x: number, bit: number): number {
-  return x ^ 1 << bit - 1
+  return x ^ (1 << (bit - 1))
 }

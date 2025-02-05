@@ -6,5 +6,5 @@
  *  @returns the isolated field.
  */
 export default function isolateRight(x: number, bit: number): number {
-  return x & (1 << bit) - 1
+  return x & ((1 << bit) - 1)
 }

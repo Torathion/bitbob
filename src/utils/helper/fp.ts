@@ -124,7 +124,7 @@ export function rightShift(x: number, shift: number): number {
  *  @returns the unsigned 32 bit integer presentation
  */
 export function signed(x: number): number {
-  return x << 0 >> 0
+  return (x << 0) >> 0
 }
 
 /**

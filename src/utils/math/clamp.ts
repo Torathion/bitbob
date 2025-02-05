@@ -7,6 +7,6 @@
  *  @returns the clamped integer.
  */
 export default function clamp(x: number, minX: number, maxX: number): number {
-  const max = x ^ (x ^ minX) & -+(x < minX)
-  return maxX ^ (max ^ maxX) & -+(max < maxX)
+  const max = x ^ ((x ^ minX) & -+(x < minX))
+  return maxX ^ ((max ^ maxX) & -+(max < maxX))
 }

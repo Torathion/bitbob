@@ -6,5 +6,5 @@
  */
 export default function hasUnsetBits(x: number): boolean {
   x >>>= 0
-  return !x || !!(x & x + 1)
+  return !x || !!(x & (x + 1))
 }

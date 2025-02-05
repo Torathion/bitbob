@@ -18,5 +18,5 @@ export default function intLog2(x: number): number {
   shift = +(x > 0x3) << 1
   x >>>= shift
   r |= shift
-  return r | x >> 1
+  return r | (x >> 1)
 }

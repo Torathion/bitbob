@@ -6,5 +6,5 @@
  *  @returns the state of the target bit. Returns 0 for out of range bit.
  */
 export default function get(x: number, bit: number): number {
-  return x >> bit & 1
+  return (x >> bit) & 1
 }

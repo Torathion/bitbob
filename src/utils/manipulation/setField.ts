@@ -11,5 +11,5 @@ import createSizeMask from '../helper/createSizeMask'
  *  @returns The modified number with the specified field set to `y`.
  */
 export default function setField(x: number, y: number, size: number, shift = 0, mask?: number): number {
-  return x & ~(mask ?? createSizeMask(size, shift)) | y << shift
+  return (x & ~(mask ?? createSizeMask(size, shift))) | (y << shift)
 }

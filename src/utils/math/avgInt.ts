@@ -6,5 +6,5 @@
  *  @returns the average of two integers.
  */
 export default function avgInt(x: number, y: number): number {
-    return x + y >> 1
+  return (x + y) >> 1
 }

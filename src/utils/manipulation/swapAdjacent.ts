@@ -5,5 +5,5 @@
  *  @returns A new number with all adjacent bits swapped.
  */
 export default function swapAdjacent(x: number): number {
-  return (x & 0b10101010) >> 1 | (x & 0b01010101) << 1
+  return ((x & 0b10101010) >> 1) | ((x & 0b01010101) << 1)
 }

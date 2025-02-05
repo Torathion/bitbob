@@ -5,5 +5,5 @@
  *  @returns the propagated number, usually a power of 2.
  */
 export default function rightPropagate(x: number): number {
-  return (x === 0 ? 1 : x | x - 1) >>> 0
+  return (x === 0 ? 1 : x | (x - 1)) >>> 0
 }

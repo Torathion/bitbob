@@ -51,9 +51,6 @@ jobs:
                   pnpm-store-${{ runner.os }}-
             - name: 'Test'
               run: pnpm run test
-            - name: 'Report Coverage'
-              if: always() # Also generate the report if tests are failing
-              uses: davelosert/vitest-coverage-report-action@v2
             - name: Lint
               run: eslint .src --ext .js,.jsx,.ts,.tsx
             - name: Build

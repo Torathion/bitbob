@@ -1,0 +1,64 @@
+name: 'Test'
+on:
+    push:
+        branches:
+          - main
+          - '!renovate/**'
+    pull_request:
+
+env:
+  FORCE_COLOR: 2
+
+defaults:
+    run:
+        shell: bash
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [20.x, 22.x]
+            fail-fast: true
+
+        permissions:
+            # Required to checkout the code
+            contents: read
+            # Required to put a comment into the pull-request
+            pull-requests: write
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Install pnpm
+              uses: ./.github/actions/install
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'pnpm'
+            - name: Run Install
+              run: pnpm install --no-frozen-lockfile
+            - name: Cache pnpm dependencies
+              uses: actions/cache@v4
+              with:
+                path: ~/.pnpm-store
+                key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml')}}
+                restore-keys: |
+                  pnpm-store-${{ runner.os }}-
+            - name: 'Test'
+              run: pnpm run test
+            - name: 'Report Coverage'
+              if: always() # Also generate the report if tests are failing
+              uses: davelosert/vitest-coverage-report-action@v2
+            - name: Lint
+              run: eslint .src --ext .js,.jsx,.ts,.tsx
+            - name: Build
+              run: pnpm run build
+            - name: Build Stackblitz
+              run:  pnpm dlx pkg-pr-new@0.0 publish --compact --pnpm .
+            - name: Build size report
+              uses: andresz1/size-limit-action@v1
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}

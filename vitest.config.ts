@@ -17,14 +17,10 @@ export default defineConfig({
       exclude: ['**/*.js', '**/*.d.ts', '**/types/', '**/index.ts', '**/constants.ts', '**/*.test.ts', '**/*.spec.ts', '**/*.config.ts'],
       reporter: ['text', 'text-summary', 'json', 'json-summary', 'html']
     },
-    reporters: isCI ? ['verbose', 'json', 'junit'] : ['default', 'hanging-process'],
+    reporters: isCI ? ['verbose', 'json', 'json-summary', 'junit'] : ['default', 'hanging-process'],
     outputFile: {
       json: './test-results/test-results.json',
       junit: './test-results/test-results.xml'
-    },
-    benchmark: {
-      reporters: isCI ? ['verbose', 'json'] : 'default',
-      outputFile: './test-results/benchmark-results.json'
     },
     silent: isCI
   }

@@ -56,7 +56,7 @@ jobs:
             - name: Create output folder
               run: mkdir -p ./dist
             - name: Build
-              run: node --run build
+              run: pnpm run build
             - name: Build Stackblitz
               run:  pnpm dlx pkg-pr-new@0.0 publish --compact --pnpm .
             - name: Build size report

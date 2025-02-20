@@ -14,7 +14,7 @@ defaults:
         shell: bash
 
 jobs:
-    test:
+    ci:
         runs-on: ubuntu-latest
 
         strategy:
@@ -56,7 +56,7 @@ jobs:
             - name: Create output folder
               run: mkdir -p ./dist
             - name: Build
-              run: pnpm run build
+              run: sudo pnpm run build
             - name: Build Stackblitz
               run:  pnpm dlx pkg-pr-new@0.0 publish --compact --pnpm .
             - name: Build size report

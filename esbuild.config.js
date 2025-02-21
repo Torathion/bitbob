@@ -15,7 +15,7 @@ const buildOptions = {
 await build({
   ...buildOptions,
   format: 'esm',
-  outfile: './dist/index.esm.js' // Specify the output file for ESM
+  outfile: './dist/index.mjs' // Specify the output file for ESM
 }).catch(err => {
   console.error(err)
   process.exit(1)

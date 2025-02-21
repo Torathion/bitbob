@@ -4,10 +4,10 @@
   "description": "A big collection of tiny bit hacks from your tiny bit buddy!",
   "types": "./index.d.ts",
   "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
+  "module": "./dist/index.mjs",
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
   },
@@ -42,17 +42,22 @@
     "esbuild": "^0.25.0",
     "eslint": "^9.20.1",
     "eslint-config-shiny": "^4.1.0",
+    "size-limit": "^11.2.0",
     "typescript": "^5.7.3",
     "vitest": "^3.0.6"
   },
   "size-limit": [
     {
-      "path": "dist/index.js",
+      "path": "./dist/index.js",
+      "limit": "4500 ms"
+    },
+        {
+      "path": "./dist/index.mjs",
       "limit": "4500 ms"
     }
   ],
   "pnpm": {
-    "configDependencies": {
+        "configDependencies": {
       "build-scripts-allowlist": "0.20250131.0+sha512-vuePnd+0F3PtuyFIHT1XsfOK7/BGkK1QmIMRHHPo+6LW7Wr/37QsQV3R/UztxoFWHHm9pSbCUovigSmeapfdLA=="
     },
     "onlyBuiltDependenciesFile": "node_modules/.pnpm-config/build-scripts-allowlist/common.json"

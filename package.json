@@ -14,6 +14,7 @@
   "scripts": {
     "build": "node esbuild.config.js",
     "lint": "eslint src",
+    "size": "pnpm run build && size-limit",
     "test": "vitest"
   },
   "keywords": [
@@ -53,6 +54,7 @@
     },
         {
       "path": "./dist/index.mjs",
+      "import": "{ createComponent }",
       "limit": "4500 ms"
     }
   ],

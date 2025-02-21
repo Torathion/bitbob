@@ -24,7 +24,7 @@ jobs:
 
         permissions:
             # Required to checkout the code
-            contents: write
+            contents: read
             # Required to put a comment into the pull-request
             pull-requests: write
 
@@ -53,8 +53,6 @@ jobs:
               run: pnpm run test
             - name: Lint
               run: pnpm run lint
-            - name: Create output folder
-              run: mkdir -p ./dist
             - name: Build
               run: pnpm run build
             - name: Build Stackblitz
@@ -63,5 +61,3 @@ jobs:
               uses: andresz1/size-limit-action@v1
               with:
                 github_token: ${{ secrets.GITHUB_TOKEN }}
-            - name: Cleanup
-              run: rm -rf ./dist

@@ -43,5 +43,11 @@
     "eslint-config-shiny": "^4.1.0",
     "typescript": "^5.7.3",
     "vitest": "^3.0.6"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "4500 ms"
+    }
+  ]
 }

@@ -41,7 +41,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: 'pnpm'
             - name: Run Install
-              run: pnpm install --no-frozen-lockfile
+              run: pnpm install --allow-build=esbuild --no-frozen-lockfile
             - name: Cache pnpm dependencies
               uses: actions/cache@v4
               with:

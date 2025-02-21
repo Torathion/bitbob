@@ -37,6 +37,7 @@
   "type": "module",
   "license": "MIT",
   "devDependencies": {
+    "@size-limit/preset-big-lib": "^11.2.0",
     "@vitest/coverage-v8": "^3.0.6",
     "esbuild": "^0.25.0",
     "eslint": "^9.20.1",
@@ -51,9 +52,8 @@
     }
   ],
   "pnpm": {
-  "configDependencies": {
-    "build-scripts-allowlist": "0.20250131.0+sha512-vuePnd+0F3PtuyFIHT1XsfOK7/BGkK1QmIMRHHPo+6LW7Wr/37QsQV3R/UztxoFWHHm9pSbCUovigSmeapfdLA=="
-  },
-  "onlyBuiltDependenciesFile": "node_modules/.pnpm-config/build-scripts-allowlist/common.json"
-}
+    "configDependencies": {
+      "build-scripts-allowlist": "0.20250131.0+sha512-vuePnd+0F3PtuyFIHT1XsfOK7/BGkK1QmIMRHHPo+6LW7Wr/37QsQV3R/UztxoFWHHm9pSbCUovigSmeapfdLA=="
+    }
+  }
 }

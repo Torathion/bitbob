@@ -50,11 +50,3 @@ jobs:
               run: pnpm run build
             - name: Build Stackblitz
               run:  pnpm dlx pkg-pr-new@0.0 publish --compact --pnpm .
-            - name: Build size report
-              uses: andresz1/size-limit-action@v1
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                skip_step: install
-                script: pnpm run size
-                directory: ./dist
-                package_manager: pnpm

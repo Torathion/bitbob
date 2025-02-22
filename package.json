@@ -38,6 +38,7 @@
   "type": "module",
   "license": "MIT",
   "devDependencies": {
+    "@size-limit/esbuild": "^11.2.0",
     "@size-limit/preset-big-lib": "^11.2.0",
     "@vitest/coverage-v8": "^3.0.6",
     "esbuild": "^0.25.0",
@@ -50,11 +51,11 @@
   "size-limit": [
     {
       "path": "./dist/index.js",
-      "limit": "100 ms"
+      "limit": "15kb"
     },
     {
       "path": "./dist/index.mjs",
-      "limit": "100 ms"
+      "limit": "15kb"
     }
   ],
   "pnpm": {

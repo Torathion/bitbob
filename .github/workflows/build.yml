@@ -57,3 +57,4 @@ jobs:
                 skip_step: install
                 script: pnpm run size
                 directory: ./dist
+                package_manager: pnpm

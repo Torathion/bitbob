@@ -50,12 +50,11 @@
   "size-limit": [
     {
       "path": "./dist/index.js",
-      "limit": "4500 ms"
+      "limit": "100 ms"
     },
-        {
+    {
       "path": "./dist/index.mjs",
-      "import": "{ createComponent }",
-      "limit": "4500 ms"
+      "limit": "100 ms"
     }
   ],
   "pnpm": {

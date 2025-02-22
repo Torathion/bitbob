@@ -6,5 +6,5 @@
  *  @returns The new number with the specified bit cleared.
  */
 export default function clear(x: number, bit: number): number {
-  return x & ~(1 << bit - 1)
+  return x & ~(1 << (bit - 1))
 }

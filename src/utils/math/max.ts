@@ -6,5 +6,5 @@
  *  @returns the maximum of both integers.
  */
 export default function max(x: number, y: number): number {
-  return x ^ (x ^ y) & -(x < y)
+  return x ^ ((x ^ y) & -(x < y))
 }

@@ -6,5 +6,5 @@
  *  @returns the minimum of both integers.
  */
 export default function min(x: number, y: number): number {
-  return y ^ (x ^ y) & -(x < y)
+  return y ^ ((x ^ y) & -(x < y))
 }

@@ -7,10 +7,10 @@
  */
 export default function diff(x: number, y: number): number {
   let count = 0
-  let diff = (x ^ y) >>> 0
-  while (diff) {
-    count += diff & 1
-    diff >>>= 1
+  let diffVal = (x ^ y) >>> 0
+  while (diffVal) {
+    count += diffVal & 1
+    diffVal >>>= 1
   }
   return count
 }

@@ -7,5 +7,5 @@ import { getHigh } from '../helper/doubleView'
  *  @returns the sign of the given number.
  */
 export default function doubleSign(n: number): number {
-    return getHigh(n) >>> 31
+  return getHigh(n) >>> 31
 }

@@ -2,8 +2,15 @@
   "name": "bitbob",
   "version": "1.0.4",
   "description": "A big collection of tiny bit hacks from your tiny bit buddy!",
-  "main": "./dist/index.js",
   "types": "./index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "node esbuild.config.js",
     "lint": "eslint src",
@@ -30,11 +37,18 @@
   "type": "module",
   "license": "MIT",
   "devDependencies": {
-    "@vitest/coverage-v8": "^3.0.2",
-    "esbuild": "^0.24.2",
-    "eslint": "^9.18.0",
+    "@vitest/coverage-v8": "^3.0.6",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.20.1",
     "eslint-config-shiny": "^4.1.0",
+    "size-limit": "^11.2.0",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.2"
+    "vitest": "^3.0.6"
+  },
+  "pnpm": {
+        "configDependencies": {
+      "build-scripts-allowlist": "0.20250131.0+sha512-vuePnd+0F3PtuyFIHT1XsfOK7/BGkK1QmIMRHHPo+6LW7Wr/37QsQV3R/UztxoFWHHm9pSbCUovigSmeapfdLA=="
+    },
+    "onlyBuiltDependenciesFile": "node_modules/.pnpm-config/build-scripts-allowlist/common.json"
   }
 }

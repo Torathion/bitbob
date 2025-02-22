@@ -8,5 +8,5 @@ import { isPow2 } from 'src/guards'
  *  @returns the remainder when `x` is divided by `power`, or -1 if the number is not a power of 2
  */
 export default function unsignedModPow2(x: number, power: number): number {
-  return isPow2(power) ? (x & power - 1) + power & power - 1 : -1
+  return isPow2(power) ? ((x & (power - 1)) + power) & (power - 1) : -1
 }

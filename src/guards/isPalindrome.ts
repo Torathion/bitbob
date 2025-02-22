@@ -8,7 +8,7 @@ export default function isPalindrome(x: number): boolean {
   let rev = 0
   let temp = x
   while (temp > 0) {
-    rev = rev << 1 | temp & 1
+    rev = (rev << 1) | (temp & 1)
     temp >>= 1
   }
   return rev === x

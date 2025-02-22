@@ -6,7 +6,7 @@
  */
 export default function posOfSet(n: number): number {
   // unset lsb and check if non-zero
-  if (n & n - 1) return 1
+  if (n & (n - 1)) return 1
   let pos = 0
   while (n) {
     n >>= 1

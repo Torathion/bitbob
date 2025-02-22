@@ -6,6 +6,7 @@
  */
 export default function intLog10(x: number): number {
   if (x < 0) return NaN
+  /* eslint-disable unicorn/no-nested-ternary */
   return x >= 1000000000
     ? 9
     : x >= 100000000
@@ -25,4 +26,5 @@ export default function intLog10(x: number): number {
     : x >= 10
     ? 1
     : 0
+  /* eslint-enable unicorn/no-nested-ternary */
 }

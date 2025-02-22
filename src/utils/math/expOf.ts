@@ -7,5 +7,5 @@ import { getHigh } from '../helper/doubleView'
  *  @returns the exponent of the given number.
  */
 export default function expOf(n: number): number {
-    return (getHigh(n) << 1 >>> 21) - 1023
+  return ((getHigh(n) << 1) >>> 21) - 1023
 }

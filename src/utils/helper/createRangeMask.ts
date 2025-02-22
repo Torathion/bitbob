@@ -6,5 +6,5 @@
  *  @returns the resulting bit mask.
  */
 export default function createRangeMask(start: number, end: number): number {
-  return (1 << end - start + 1) - 1 << start
+  return ((1 << (end - start + 1)) - 1) << start
 }

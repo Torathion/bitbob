@@ -1,9 +1,17 @@
 # bitbob
 
-[![NPM license](https://img.shields.io/npm/l/bitbob.svg)](https://www.npmjs.com/package/bitbob)
-[![NPM version](https://img.shields.io/npm/v/bitbob.svg)](https://www.npmjs.com/package/bitbob)
-[![NPM downloads](https://img.shields.io/npm/dm/bitbob.svg)](http://www.npmtrends.com/bitbob)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/bitbob?style=flat)](https://bundlephobia.com/result?p=bitbob)
+<p align="center">
+<h1 align="center">Core bit math for faster performance</h1>
+<p align="center">
+  <a href="https://www.npmjs.com/package/bitbob"><img src="https://img.shields.io/npm/v/bitbob?style=for-the-badge"/></a>
+  <a href="https://www.npmjs.com/package/bitbob"><img src="https://img.shields.io/npm/dm/bitbob?style=for-the-badge"/></a>
+  <a href="https://www.npmjs.com/package/bitbob"><img src="https://img.shields.io/bundlephobia/minzip/bitbob?style=for-the-badge"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/Torathion/bitbob?style=for-the-badge"/></a>
+  <a href="https://codecov.io/gh/torathion/bitbob"><img src="https://codecov.io/gh/torathion/bitbob/branch/main/graph/badge.svg?style=for-the-badge" /></a>
+  <a href="https://github.com/torathion/bitbob/actions"><img src="https://github.com/torathion/bitbob/workflows/Test/badge.svg"/></a>
+  <a href="https://github.com/torathion/bitbob/actions"><img src="https://github.com/torathion/bitbob/workflows/Build/badge.svg"/></a>
+</p>
+</p>
 
 Speed up your math with smart little bit hacks from your smart little bit buddy!
 
@@ -19,13 +27,13 @@ Instead of using built-in `Math` functions that are build to be as flexible and 
 import { min } from 'bitbob'
 
 export default function includes(a: string[], b: string[]): boolean {
-    const aLen = a.length
-    const bLen = b.length
-    const len = min(aLen, bLen) // Faster than Math.min!
+    const len = min(a.length, b.length) // Faster than Math.min!
     for (let i = 0; i < len; i++) if (a[i] === b[i]) return true
     return false
 }
 ```
+
+Bitbob provides a lot more math replacements. Read [here](https://github.com/Torathion/bitbob/blob/main/docs/math-replacements.md) for more!
 
 Some bit hacks are so small that they are hard to use them as a function because of typical function overhead. Therefore, here is a compiled list of other tiny math optimizations through bit hacks you can do: [List](https://github.com/Torathion/bitbob/blob/main/docs/more-bit-tricks.md)
 
@@ -38,7 +46,7 @@ Data structures sometimes come with a very complex lifecycle to, for example, ha
 import { BitMap } from 'bitbob'
 
 const enum States {
-    Starting // 0b1
+    Starting, // 0b1
     Closing, // 0b10
     Scrolling // 0b100
     Zooming, // 0b1000

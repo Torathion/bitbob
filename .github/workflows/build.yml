@@ -55,4 +55,5 @@ jobs:
               with:
                 github_token: ${{ secrets.GITHUB_TOKEN }}
                 skip_step: install
+                script: pnpm run size
                 directory: ./dist

@@ -14,7 +14,7 @@
   "scripts": {
     "build": "node esbuild.config.js",
     "lint": "eslint src",
-    "size": "pnpm run build && size-limit",
+    "size": "pnpm run build && size-limit --json",
     "test": "vitest"
   },
   "keywords": [

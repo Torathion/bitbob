@@ -17,7 +17,7 @@ export default defineConfig({
       exclude: ['**/*.js', '**/*.d.ts', '**/types/', '**/index.ts', '**/constants.ts', '**/*.test.ts', '**/*.spec.ts', '**/*.config.ts'],
       reporter: isCI ? ['text', ['json', { summary: true }], 'json-summary'] : ['default', 'hanging-process']
     },
-    reporters: isCI ? ['verbose', ['json', { summary: true }], 'json-summary', 'junit'] : ['default', 'hanging-process'],
+    reporters: isCI ? ['verbose', 'json', 'junit'] : ['default', 'hanging-process'],
     outputFile: {
       json: './test-results/test-results.json',
       junit: './test-results/test-results.xml'

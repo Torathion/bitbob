@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/bitbob"><img src="https://img.shields.io/npm/v/bitbob?style=for-the-badge"/></a>
   <a href="https://npmtrends.com/bitbob"><img src="https://img.shields.io/npm/dm/bitbob?style=for-the-badge"/></a>
-  <a href="https://bundlephobia.com/package/bitbob@1.0.5"><img src="https://img.shields.io/bundlephobia/minzip/bitbob?style=for-the-badge"/></a>
+  <a href="https://bundlephobia.com/package/bitbob"><img src="https://img.shields.io/bundlephobia/minzip/bitbob?style=for-the-badge"/></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/Torathion/bitbob?style=for-the-badge"/></a>
   <a href="https://codecov.io/gh/torathion/bitbob"><img src="https://codecov.io/gh/torathion/bitbob/branch/main/graph/badge.svg?style=for-the-badge" /></a>
   <a href="https://github.com/torathion/bitbob/actions"><img src="https://github.com/torathion/bitbob/workflows/Test/badge.svg"/></a>

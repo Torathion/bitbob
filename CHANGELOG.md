@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.6] 2025-2-23
+
+- Fix missing types error.
+
 ## [1.0.5] 2025-2-22
 
 - Add CJS support.

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.7] 2025-2-23
+
+- Fix build error when using ESM.
+
 ## [1.0.6] 2025-2-23
 
 - Fix missing types error.

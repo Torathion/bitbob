@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.8] 2025-3-8
+
+- Fixed edge case of `round(-2.5) !== Math.round(-2.5)`
+
 ## [1.0.7] 2025-2-23
 
 - Fix build error when using ESM.

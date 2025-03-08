@@ -10,8 +10,8 @@ describe('round', () => {
 
   it('rounds negative numbers correctly', () => {
     expect(round(-2.3)).toBe(-2)
+    expect(round(-2.5)).toBe(-2) // Halfway case
     expect(round(-2.7)).toBe(-3)
-    expect(round(-2.5)).toBe(-3) // Halfway case
   })
 
   it('handles integer inputs gracefully', () => {

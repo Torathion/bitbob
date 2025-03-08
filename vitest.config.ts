@@ -9,14 +9,30 @@ if (process.env.TEST_WATCH) {
 const isCI = process.env.CI === 'true'
 
 export default defineConfig({
+  esbuild: {
+    target: 'es2022',
+    include: /\.(m?[jt]s|[jt]sx)$/,
+    exclude: []
+  },
   test: {
     coverage: {
       enabled: true,
       all: true,
       provider: 'v8',
-      exclude: ['**/*.js', '**/*.d.ts', '**/types/', '**/index.ts', '**/constants.ts', '**/*.test.ts', '**/*.spec.ts', '**/*.config.ts'],
-      reporter: isCI ? ['text', ['json', { summary: true }], 'json-summary'] : ['default', 'hanging-process']
+      exclude: [
+        '**/*.js',
+        '**/*.mjs',
+        '**/*.d.ts',
+        '**/types/',
+        '**/index.ts',
+        '**/constants.ts',
+        '**/*.config.ts',
+        '**/*.config.js',
+        '**/test-utils.ts/**'
+      ],
+      reporter: ['text', 'text-summary', 'json', 'json-summary']
     },
+    testTimeout: 10000,
     reporters: isCI ? ['verbose', 'json', 'junit'] : ['default', 'hanging-process'],
     outputFile: {
       json: './test-results/test-results.json',

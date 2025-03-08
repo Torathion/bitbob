@@ -10,7 +10,7 @@
     "helpers:pinGitHubActionDigestsToSemver"
   ],
   "additionalBranchPrefix": "{{parentDir}}-",
-  "enabledManagers": ["github-actions", "pnpm"],
+  "enabledManagers": ["github-actions", "npm"],
   "dependencyDashboard": true,
   "dependencyDashboardLabels": ["dependencies", "repo maintenance"],
   "labels": ["dependencies"],

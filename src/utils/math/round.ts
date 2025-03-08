@@ -1,5 +1,3 @@
-import sign from './sign'
-
 /**
  *  Rounds a given number to the nearest integer.
  *
@@ -7,5 +5,6 @@ import sign from './sign'
  *  @returns the rounded integer value of `x`.
  */
 export default function round(x: number): number {
-  return (x + 0.5 * sign(x)) >> 0
+  const frac = x - (x | 0) + 0
+  return (x + frac + (frac !== 0 ? 0.1 : 0)) | 0
 }

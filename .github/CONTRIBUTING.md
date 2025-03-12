@@ -37,3 +37,9 @@ By participating in this project, you agree to abide by our [Code of Conduct](CO
 1. Install all dependencies using `pnpm install`. That's it.
 
 ## Making Changes
+
+- Make sure edits are as short, precise and optimized as possible.
+- No comfort functions like `array.forEach`, `array.map`, `array.reduce`
+- Do not add obfuscated or unreadable code into the project
+- Do not add any new dependencies into the project
+- Only use bit manipulation

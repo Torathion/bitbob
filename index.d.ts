@@ -311,127 +311,6 @@ declare module 'bitbob' {
    */
   export function getHigh(n: number): number
   /**
-   *  Adds two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the sum of both numbers.
-   */
-  export function add(x: number, y: number): number
-
-  /**
-   *  AND combines two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the AND combined number.
-   */
-  export function and(x: number, y: number): number
-
-  /**
-   *  Divides two numbers.
-   *
-   *  @param x - target number.
-   *  @param y - divisor.
-   *  @returns the quotient of both numbers.
-   */
-  export function div(x: number, y: number): number
-
-  /**
-   *  Determines the identity of the number.
-   *
-   *  @param x - the target number.
-   *  @returns the same number.
-   */
-  export function identity(x: number): number
-
-  /**
-   *  Shifts the number to the left by a given shift.
-   *
-   *  @param x - target number.
-   *  @param shift - number of positions to shift left.
-   *  @returns the left shifted number.
-   */
-  export function leftShift(x: number, shift: number): number
-
-  /**
-   *  Takes the modulo of both numbers.
-   *
-   *  @param x - target number.
-   *  @param y - modulator.
-   *  @returns the result of this operation.
-   */
-  export function mod(x: number, y: number): number
-
-  /**
-   *  Multiplies two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the product of both numbers.
-   */
-  export function mult(x: number, y: number): number
-
-  /**
-   *  Negates a number.
-   *
-   *  @param x - target number.
-   *  @returns the negated number.
-   */
-  export function not(x: number): number
-
-  /**
-   *  OR combines two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the OR combined number.
-   */
-  export function or(x: number, y: number): number
-
-  /**
-   *  Calculates the power of two numbers.
-   *
-   *  @param x - target number.
-   *  @param y - power.
-   *  @returns the result of this operation.
-   */
-  export function pow(x: number, y: number): number
-
-  /**
-   *  Shifts a number to the right by the given shift.
-   *
-   *  @param x - target number.
-   *  @param shift - positions to the right to shift.
-   *  @returns the right shifted number.
-   */
-  export function rightShift(x: number, shift: number): number
-
-  /**
-   *  Converts an unsigned 32-bit integer to a signed 32-bit integer.
-   *
-   *  @param x - target number.
-   *  @returns the signed 32-bit integer representation.
-   */
-  export function signed(x: number): number
-
-  /**
-   *  Converts the number into an unsigned 32-bit integer.
-   *
-   *  @param x - target number.
-   *  @returns the unsigned 32-bit integer representation of this number.
-   */
-  export function unsigned(x: number): number
-
-  /**
-   *  XOR combines two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the XOR combined number.
-   */
-  export function xor(x: number, y: number): number
-  /**
    * Clears (sets to 0) the bit at the given position in the number.
    *
    *  @param x - The number where the bit is to be cleared.
@@ -708,43 +587,12 @@ declare module 'bitbob' {
    */
   export function wrap(x: number, bitLimit: number): number
   /**
-   *  Computes the absolute value of the given integer.
-   *
-   *  @param x - target number
-   *  @returns the absolute value of the integer.
-   */
-  export function abs(x: number): number
-  /**
    *  Computes the inverse sign of the given integer.
    *
    *  @param x - target integer
    *  @returns the inverse sign of the given integer.
    */
   export function aSign(x: number): number
-  /**
-   *  Computes the average of two integers.
-   *
-   *  @param x - first number
-   *  @param y - second number
-   *  @returns the average of two integers.
-   */
-  export function avgInt(x: number, y: number): number
-  /**
-   *  Rounds the given number to the next highest.
-   *
-   *  @param x - the number to round.
-   *  @returns the rounded number.
-   */
-  export function ceil(x: number): number
-  /**
-   *  Clamps the given integer between a given minimum and maximum integer.
-   *
-   *  @param x - target integer.
-   *  @param minX - the minimum integer.
-   *  @param maxX - the maximum integer.
-   *  @returns the clamped integer.
-   */
-  export function clamp(x: number, minX: number, maxX: number): number
   /**
    *  Returns the fractional part of a given double precision 32-bit unsigned number.
    *
@@ -767,20 +615,6 @@ declare module 'bitbob' {
    */
   export function expOf(n: number): number
   /**
-   *  Rounds the number to the next lowest number.
-   *
-   *  @param x - the number to round.
-   *  @returns the rounded number.
-   */
-  export function floor(x: number): number
-  /**
-   *  Calculates the fraction of the given number. Some fractions may result in rounding issues due to the floating point issue.
-   *
-   *   @param n - target number
-   *   @returns the fraction of the given number
-   */
-  export function frac(n: number): number
-  /**
    *  Calculates the Hamming distance between two integers.
    *  The Hamming distance is the number of positions at which the corresponding bits are different.
    *
@@ -789,36 +623,6 @@ declare module 'bitbob' {
    *  @returns The Hamming distance between the two integers. This is the number of differing bit positions.
    */
   export function hammingDistance(x: number, y: number): number
-  /**
-   *  Calculates the logarithm of a given integer. Passing float numbers won't work.
-   *
-   *  @param x - the given integer.
-   *  @returns the logarithm base 2 of the given number.
-   */
-  export function intLog2(x: number): number
-  /**
-   *  Calculates the logarithm of a given integer.
-   *
-   *  @param x - the given integer.
-   *  @returns the logarithm base 10 of the given number.
-   */
-  export function intLog10(x: number): number
-  /**
-   *  Computes the maximum of the two given integers.
-   *
-   *  @param x - the first number to compare.
-   *  @param y - the second number to compare.
-   *  @returns the maximum of both integers.
-   */
-  export function max(x: number, y: number): number
-  /**
-   *  Computes the minimum of the two given integers.
-   *
-   *  @param x - the first number to compare.
-   *  @param y - the second number to compare.
-   *  @returns the minimum of both integers.
-   */
-  export function min(x: number, y: number): number
   /**
    *  Implementation of the [Fast Modular Exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation) algorithm.
    *
@@ -848,25 +652,6 @@ declare module 'bitbob' {
    *  @returns the negation of `x`.
    */
   export function neg(x: number): number
-  /**
-   *  Rounds a given number to the nearest integer.
-   *
-   *  @param x - The number to round.
-   *  @returns the rounded integer value of `x`.
-   */
-  export function round(x: number): number
-  /**
-   *  Determines the sign of a given number.
-   *
-   *  The function returns:
-   *  - `1` if the input `x` is positive.
-   *  - `-1` if the input `x` is negative.
-   *  - `0` if the input `x` is zero.
-   *
-   *  @param x - The number whose sign is to be determined.
-   *  @returns `1`, `-1`, or `0` based on the sign of `x`.
-   */
-  export function sign(x: number): number
   /**
    *  Calculates the closest power of 2 to a given number.
    *

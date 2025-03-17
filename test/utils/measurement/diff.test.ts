@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import diff from '../../../src/utils/measurement/diff'
-import { INT32_MAX } from '../../../src/constants'
+import { I32_MAX } from '../../../src/constants'
 
 describe('diff', () => {
   it('counts the number of different bits correctly for small numbers', () => {
@@ -20,8 +20,8 @@ describe('diff', () => {
   })
 
   it('works with edge case numbers like 0 and the maximum integer', () => {
-    expect(diff(0, INT32_MAX)).toBe(31) // The number of bits that differ between 0 and the largest safe integer
-    expect(diff(INT32_MAX, 0)).toBe(31) // The same check, order reversed
+    expect(diff(0, I32_MAX)).toBe(31) // The number of bits that differ between 0 and the largest safe integer
+    expect(diff(I32_MAX, 0)).toBe(31) // The same check, order reversed
   })
 
   it('handles large numbers correctly', () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import set from '../../../src/utils/manipulation/set'
-import { INT32_MIN } from '../../../src/constants'
+import { I32_MIN } from '../../../src/constants'
 
 describe('set function', () => {
   it('sets the specified bit in the number', () => {
@@ -18,7 +18,7 @@ describe('set function', () => {
   })
 
   it('handles edge cases for large bit indices', () => {
-    expect(set(0, 31)).toBe(INT32_MIN) // Sets the 31st bit in 0
+    expect(set(0, 31)).toBe(I32_MIN) // Sets the 31st bit in 0
     expect(set(0, 0)).toBe(1) // Sets the 0th bit in 0
   })
 })

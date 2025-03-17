@@ -311,127 +311,6 @@ declare module 'bitbob' {
    */
   export function getHigh(n: number): number
   /**
-   *  Adds two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the sum of both numbers.
-   */
-  export function add(x: number, y: number): number
-
-  /**
-   *  AND combines two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the AND combined number.
-   */
-  export function and(x: number, y: number): number
-
-  /**
-   *  Divides two numbers.
-   *
-   *  @param x - target number.
-   *  @param y - divisor.
-   *  @returns the quotient of both numbers.
-   */
-  export function div(x: number, y: number): number
-
-  /**
-   *  Determines the identity of the number.
-   *
-   *  @param x - the target number.
-   *  @returns the same number.
-   */
-  export function identity(x: number): number
-
-  /**
-   *  Shifts the number to the left by a given shift.
-   *
-   *  @param x - target number.
-   *  @param shift - number of positions to shift left.
-   *  @returns the left shifted number.
-   */
-  export function leftShift(x: number, shift: number): number
-
-  /**
-   *  Takes the modulo of both numbers.
-   *
-   *  @param x - target number.
-   *  @param y - modulator.
-   *  @returns the result of this operation.
-   */
-  export function mod(x: number, y: number): number
-
-  /**
-   *  Multiplies two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the product of both numbers.
-   */
-  export function mult(x: number, y: number): number
-
-  /**
-   *  Negates a number.
-   *
-   *  @param x - target number.
-   *  @returns the negated number.
-   */
-  export function not(x: number): number
-
-  /**
-   *  OR combines two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the OR combined number.
-   */
-  export function or(x: number, y: number): number
-
-  /**
-   *  Calculates the power of two numbers.
-   *
-   *  @param x - target number.
-   *  @param y - power.
-   *  @returns the result of this operation.
-   */
-  export function pow(x: number, y: number): number
-
-  /**
-   *  Shifts a number to the right by the given shift.
-   *
-   *  @param x - target number.
-   *  @param shift - positions to the right to shift.
-   *  @returns the right shifted number.
-   */
-  export function rightShift(x: number, shift: number): number
-
-  /**
-   *  Converts an unsigned 32-bit integer to a signed 32-bit integer.
-   *
-   *  @param x - target number.
-   *  @returns the signed 32-bit integer representation.
-   */
-  export function signed(x: number): number
-
-  /**
-   *  Converts the number into an unsigned 32-bit integer.
-   *
-   *  @param x - target number.
-   *  @returns the unsigned 32-bit integer representation of this number.
-   */
-  export function unsigned(x: number): number
-
-  /**
-   *  XOR combines two numbers.
-   *
-   *  @param x - first number.
-   *  @param y - second number.
-   *  @returns the XOR combined number.
-   */
-  export function xor(x: number, y: number): number
-  /**
    * Clears (sets to 0) the bit at the given position in the number.
    *
    *  @param x - The number where the bit is to be cleared.
@@ -708,43 +587,12 @@ declare module 'bitbob' {
    */
   export function wrap(x: number, bitLimit: number): number
   /**
-   *  Computes the absolute value of the given integer.
-   *
-   *  @param x - target number
-   *  @returns the absolute value of the integer.
-   */
-  export function abs(x: number): number
-  /**
    *  Computes the inverse sign of the given integer.
    *
    *  @param x - target integer
    *  @returns the inverse sign of the given integer.
    */
   export function aSign(x: number): number
-  /**
-   *  Computes the average of two integers.
-   *
-   *  @param x - first number
-   *  @param y - second number
-   *  @returns the average of two integers.
-   */
-  export function avgInt(x: number, y: number): number
-  /**
-   *  Rounds the given number to the next highest.
-   *
-   *  @param x - the number to round.
-   *  @returns the rounded number.
-   */
-  export function ceil(x: number): number
-  /**
-   *  Clamps the given integer between a given minimum and maximum integer.
-   *
-   *  @param x - target integer.
-   *  @param minX - the minimum integer.
-   *  @param maxX - the maximum integer.
-   *  @returns the clamped integer.
-   */
-  export function clamp(x: number, minX: number, maxX: number): number
   /**
    *  Returns the fractional part of a given double precision 32-bit unsigned number.
    *
@@ -767,20 +615,6 @@ declare module 'bitbob' {
    */
   export function expOf(n: number): number
   /**
-   *  Rounds the number to the next lowest number.
-   *
-   *  @param x - the number to round.
-   *  @returns the rounded number.
-   */
-  export function floor(x: number): number
-  /**
-   *  Calculates the fraction of the given number. Some fractions may result in rounding issues due to the floating point issue.
-   *
-   *   @param n - target number
-   *   @returns the fraction of the given number
-   */
-  export function frac(n: number): number
-  /**
    *  Calculates the Hamming distance between two integers.
    *  The Hamming distance is the number of positions at which the corresponding bits are different.
    *
@@ -789,36 +623,6 @@ declare module 'bitbob' {
    *  @returns The Hamming distance between the two integers. This is the number of differing bit positions.
    */
   export function hammingDistance(x: number, y: number): number
-  /**
-   *  Calculates the logarithm of a given integer. Passing float numbers won't work.
-   *
-   *  @param x - the given integer.
-   *  @returns the logarithm base 2 of the given number.
-   */
-  export function intLog2(x: number): number
-  /**
-   *  Calculates the logarithm of a given integer.
-   *
-   *  @param x - the given integer.
-   *  @returns the logarithm base 10 of the given number.
-   */
-  export function intLog10(x: number): number
-  /**
-   *  Computes the maximum of the two given integers.
-   *
-   *  @param x - the first number to compare.
-   *  @param y - the second number to compare.
-   *  @returns the maximum of both integers.
-   */
-  export function max(x: number, y: number): number
-  /**
-   *  Computes the minimum of the two given integers.
-   *
-   *  @param x - the first number to compare.
-   *  @param y - the second number to compare.
-   *  @returns the minimum of both integers.
-   */
-  export function min(x: number, y: number): number
   /**
    *  Implementation of the [Fast Modular Exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation) algorithm.
    *
@@ -848,25 +652,6 @@ declare module 'bitbob' {
    *  @returns the negation of `x`.
    */
   export function neg(x: number): number
-  /**
-   *  Rounds a given number to the nearest integer.
-   *
-   *  @param x - The number to round.
-   *  @returns the rounded integer value of `x`.
-   */
-  export function round(x: number): number
-  /**
-   *  Determines the sign of a given number.
-   *
-   *  The function returns:
-   *  - `1` if the input `x` is positive.
-   *  - `-1` if the input `x` is negative.
-   *  - `0` if the input `x` is zero.
-   *
-   *  @param x - The number whose sign is to be determined.
-   *  @returns `1`, `-1`, or `0` based on the sign of `x`.
-   */
-  export function sign(x: number): number
   /**
    *  Calculates the closest power of 2 to a given number.
    *
@@ -963,207 +748,30 @@ declare module 'bitbob' {
    */
   export function length(x: number): number
   /**
-   * Half-precision floating-point difference between the smallest representable value above 1 and 1, a.k.a. epsilon, IEEE754.
+   *  Returns the next floating point number after any given number towards another floating point number.
+   *
+   * @param x - target number
+   * @param to - bound number
+   * @returns the next floating point number towards the bound number
    */
-  export const F16_EPS: number
+  export function nextAfter(x: number, to: number): number
+  /* De-Bruijin sequence to calculate the inverse log 2 of a power of 2 (or their trailing zeros) */
+  export const ILog2Sequence: Int8Array
   /**
-   * Half-precision floating-point square root epsilon, IEEE754.
+   *  Computes the inverse logarithm base 2 of the given number. This number already has to be a power of 2.
+   *
+   *  For arbitrary numbers, use `countTrailingZeros` instead.
+   *
+   *  @param x - The input number to compute the inverse log2 for. Must be a positive integer.
+   *  @returns The approximate inverse log2 value from the precomputed sequence.
    */
-  export const F16_SEPS: number
+  export function iLogPow2(x: number): number
   /**
-   * Half-precision floating-point cube root epsilon, IEEE754.
+   *  Rounds a given number to the next biggest multiple of the given power of 2.
+   *
+   *  @param x - target number.
+   *  @param y - target power of 2.
+   *  @returns the rounded number.
    */
-  export const F16_CEPS: number
-  /**
-   * Single-precision floating-point difference between the smallest representable value above 1 and 1, a.k.a. epsilon, IEEE754.
-   */
-  export const F32_EPS: number
-  /**
-   * Single-precision floating-point square root epsilon, IEEE754.
-   */
-  export const F32_SEPS: number
-  /**
-   * Single-precision floating-point cube root epsilon, IEEE754.
-   */
-  export const F32_CEPS: number
-  /**
-   * Double-precision floating-point difference between the smallest representable value above 1 and 1, a.k.a. epsilon, IEEE754.
-   */
-  export const F64_EPS: number
-  /**
-   * Double-precision floating-point square root epsilon, IEEE754.
-   */
-  export const F64_SEPS: number
-  /**
-   * Double-precision floating-point cube root epsilon, IEEE754.
-   */
-  export const F64_CEPS: number
-  /**
-   * Double-precision floating-point fourth root epsilon, IEEE754.
-   */
-  export const F64_FROOT_EPS: number
-  /**
-   * Half-precision floating-point bias, IEEE754.
-   */
-  export const F16_BIAS: number
-  /**
-   * Single-precision floating-point bias, IEEE754.
-   */
-  export const F32_BIAS: number
-  /**
-   * Double-precision floating-point bias, IEEE754.
-   */
-  export const F64_BIAS: number
-  /**
-   * Size of an Int8Array number.
-   */
-  export const I8_SIZE: number
-  /**
-   * Size of an Int16Array number.
-   */
-  export const I16_SIZE: number
-  /**
-   * Size of an Int32Array number.
-   */
-  export const I32_SIZE: number
-  /**
-   * Size of an Int64Array number.
-   */
-  export const I64_SIZE: number
-  /**
-   * Size of a UInt8Array number.
-   */
-  export const UI8_SIZE: number
-  /**
-   * Size of a UInt16Array number.
-   */
-  export const UI16_SIZE: number
-  /**
-   * Size of a UInt32Array number.
-   */
-  export const UI32_SIZE: number
-  /**
-   * Size of a UInt64Array number.
-   */
-  export const UI64_SIZE: number
-  /**
-   * Size of a Float32Array number.
-   */
-  export const F32_SIZE: number
-  /**
-   * Size of a Float64Array number.
-   */
-  export const F64_SIZE: number
-  /**
-   * Largest possible signed 32-bit integer value.
-   */
-  export const INT32_MAX: number
-  /**
-   * Smallest possible signed 32-bit integer value.
-   */
-  export const INT32_MIN: number
-  /**
-   * The effective number of significant bits in half-precision floating-point (includes 1 hidden bit, IEEE754 standard).
-   */
-  export const F16_PREC: number
-  /**
-   * The effective number of significant bits in single-precision floating-point (includes 1 hidden bit, IEEE754 standard).
-   */
-  export const F32_PREC: number
-  /**
-   * The effective number of significant bits in double-precision floating-point (includes 1 hidden bit, IEEE754 standard).
-   */
-  export const F64_PREC: number
-  /**
-   * The maximum base-10 exponent for half-precision floating-point values.
-   */
-  export const MAX_F16_EXP: number
-  /**
-   * The maximum base-10 exponent for single-precision floating-point values.
-   */
-  export const MAX_F32_EXP: number
-  /**
-   * The maximum base-10 exponent for double-precision floating-point values.
-   */
-  export const MAX_F64_EXP: number
-  /**
-   * The minimum base-10 exponent for half-precision floating-point values.
-   */
-  export const MIN_F16_EXP: number
-  /**
-   * The minimum base-10 exponent for single-precision floating-point values.
-   */
-  export const MIN_F32_EXP: number
-  /**
-   * The minimum base-10 exponent for double-precision floating-point values.
-   */
-  export const MIN_F64_EXP: number
-  /**
-   * The minimum base-2 exponent for normalized double-precision floating-point values.
-   */
-  export const MIN_F64_2EXP: number
-  /**
-   * The smallest positive normalized value for half-precision floating-point (IEEE754 standard).
-   */
-  export const MIN_F16_NORM: number
-  /**
-   * The smallest positive normalized value for single-precision floating-point (IEEE754 standard).
-   */
-  export const MIN_F32_NORM: number
-  /**
-   * The smallest positive normalized value for double-precision floating-point (IEEE754 standard).
-   */
-  export const MIN_F64_NORM: number
-  /**
-   * The smallest positive subnormal value for half-precision floating-point (IEEE754 standard).
-   */
-  export const MIN_F16_SUBNORM: number
-  /**
-   * The smallest positive subnormal value for single-precision floating-point (IEEE754 standard).
-   */
-  export const MIN_F32_SUBNORM: number
-  /**
-   * The smallest positive subnormal value for double-precision floating-point (IEEE754 standard).
-   */
-  export const MIN_64_SUBNORM: number
-  /**
-   * The maximum base-10 exponent for subnormal half-precision floating-point values.
-   */
-  export const MAX_F16_10SUBNORM: number
-  /**
-   * The maximum base-10 exponent for subnormal single-precision floating-point values.
-   */
-  export const MAX_F32_10SUBNORM: number
-  /**
-   * The maximum base-10 exponent for subnormal double-precision floating-point values.
-   */
-  export const MAX_F64_10SUBNORM: number
-  /**
-   * The maximum base-2 exponent for subnormal half-precision floating-point values.
-   */
-  export const MAX_F16_2SUBNORM: number
-  /**
-   * The maximum base-2 exponent for subnormal single-precision floating-point values.
-   */
-  export const MAX_F32_2SUBNORM: number
-  /**
-   * The maximum base-2 exponent for subnormal double-precision floating-point values.
-   */
-  export const MAX_F64_2SUBNORM: number
-  /**
-   * The minimum base-10 exponent for subnormal double-precision floating-point values.
-   */
-  export const MIN_F64_10SUBNORM: number
-  /**
-   * The minimum biased base-2 exponent for subnormal double-precision floating-point values.
-   */
-  export const MIN_F64_2SUBNORM: number
-  /**
-   * High word mask for the exponent and sign in double-precision floating-point numbers (IEEE754 standard).
-   */
-  export const F64_HIGHMASK: number
-  /**
-   * High word significant mask for double-precision floating-point numbers (IEEE754 standard).
-   */
-  export const F64_HIGHSMASK: number
+  export function roundNextMultPow2(x: number, y: number): number
 }

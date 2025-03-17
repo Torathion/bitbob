@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import toNextPow2 from '../../../src/utils/math/toNextPow2'
+import toNextPow2 from '../../../../src/utils/math/pow2/toNextPow2'
 
 describe('toNextPow2', () => {
   it('returns the next power of 2 for non-power-of-2 inputs', () => {

@@ -62,7 +62,7 @@ export default class ComposedNumber {
   }
 
   /**
-   *  !!DANGER!! Entirely overwrites the state and pointers of the number. Use this, if you know what you are doing.
+   *  Entirely overwrites the entire state with the given state and pointers.
    *
    * @param state - new state.
    * @param pointers - new pointers.

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import isSparse from '../../src/guards/isSparse'
-import { INT32_MAX, INT32_MIN } from '../../src/constants'
+import { I32_MAX, I32_MIN } from '../../src/constants'
 
 describe('isSparse', () => {
   it('returns true for sparse numbers', () => {
@@ -25,7 +25,7 @@ describe('isSparse', () => {
   })
 
   it('handles edge cases', () => {
-    expect(isSparse(INT32_MAX)).toBe(false) // Largest safe integer is not sparse
-    expect(isSparse(INT32_MIN)).toBe(false) // Smallest safe integer is not sparse
+    expect(isSparse(I32_MAX)).toBe(false) // Largest safe integer is not sparse
+    expect(isSparse(I32_MIN)).toBe(false) // Smallest safe integer is not sparse
   })
 })

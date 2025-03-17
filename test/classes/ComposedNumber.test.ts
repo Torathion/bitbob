@@ -1,6 +1,6 @@
 import { describe, expect, it, test } from 'vitest'
 import ComposedNumber from '../../src/classes/ComposedNumber'
-import { INT32_MAX } from '../../src/constants'
+import { I32_MAX } from '../../src/constants'
 import { IndexOutOfBoundsError, StorageOverflowError, ValueOutOfBoundsError } from '../../src/errors'
 
 describe('ComposedNumber', () => {
@@ -55,12 +55,12 @@ describe('ComposedNumber', () => {
   })
 
   it('throws an StorageOverflowError, if the storage limit exceeds', () => {
-    expect(() => new ComposedNumber(INT32_MAX).set(INT32_MAX)).toThrow(StorageOverflowError) // Already full from the start
+    expect(() => new ComposedNumber(I32_MAX).set(I32_MAX)).toThrow(StorageOverflowError) // Already full from the start
 
     const cn = new ComposedNumber()
     cn.set(234)
 
-    expect(() => cn.set(INT32_MAX)).toThrow(StorageOverflowError)
+    expect(() => cn.set(I32_MAX)).toThrow(StorageOverflowError)
   })
 
   test('store and retrieve HD screen resolutions', () => {

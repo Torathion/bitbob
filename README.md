@@ -9,8 +9,7 @@
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/Torathion/bitbob?style=for-the-badge"/></a>
   <a href="https://codecov.io/gh/torathion/bitbob"><img src="https://codecov.io/gh/torathion/bitbob/branch/main/graph/badge.svg?style=for-the-badge" /></a>
   <a href="https://github.com/torathion/bitbob/actions"><img src="https://img.shields.io/github/actions/workflow/status/torathion/bitbob/build.yml?style=for-the-badge&logo=esbuild"/></a>
-  <a href="https://renovatebot.com"><img alt="Renovate enabled" src="https://img.shields.io/badge/renovate-enabled-brightgreen.svg?style=for-the-badge&logo=renovate"></a>
-   <a href="https://github.com/prettier/prettier#readme"><img alt="code style" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge&logo=prettier"></a>
+<a href="https://github.com/prettier/prettier#readme"><img alt="code style" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge&logo=prettier"></a>
 </p>
 </p>
 

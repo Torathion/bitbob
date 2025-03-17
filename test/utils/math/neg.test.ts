@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import neg from '../../../src/utils/math/neg'
-import { INT32_MAX } from '../../../src/constants'
+import { I32_MAX } from '../../../src/constants'
 
 describe('neg', () => {
   it('returns the negation of positive numbers', () => {
@@ -18,6 +18,6 @@ describe('neg', () => {
   })
 
   it('handles edge cases for large numbers', () => {
-    expect(neg(INT32_MAX)).toBe(-INT32_MAX)
+    expect(neg(I32_MAX)).toBe(-I32_MAX)
   })
 })

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import nextCombination from '../../../src/utils/manipulation/nextCombination'
-import { INT32_MIN } from '../../../src/constants'
+import { I32_MIN } from '../../../src/constants'
 
 describe('nextCombination', () => {
   it('should return the correct next combination for small numbers', () => {
@@ -15,7 +15,7 @@ describe('nextCombination', () => {
 
   it('should handle edge cases', () => {
     expect(nextCombination(0)).toBe(1) // No bits set
-    expect(nextCombination(1 << 30)).toBe(INT32_MIN) // Largest possible single bit
+    expect(nextCombination(1 << 30)).toBe(I32_MIN) // Largest possible single bit
   })
 
   it('should handle multi-bit numbers correctly', () => {

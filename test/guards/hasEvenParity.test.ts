@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import hasEvenParity from '../../src/guards/hasEvenParity'
-import { INT32_MAX, INT32_MIN } from '../../src/constants'
+import { I32_MAX, I32_MIN } from '../../src/constants'
 
 describe('hasEvenParity', () => {
   it('returns true for numbers with an even number of 1s in their binary representation', () => {
@@ -23,8 +23,8 @@ describe('hasEvenParity', () => {
   })
 
   it('handles edge cases with large numbers', () => {
-    expect(hasEvenParity(INT32_MAX)).toBe(false)
-    expect(hasEvenParity(INT32_MIN)).toBe(false)
+    expect(hasEvenParity(I32_MAX)).toBe(false)
+    expect(hasEvenParity(I32_MIN)).toBe(false)
   })
 
   it('handles numbers with all bits set', () => {

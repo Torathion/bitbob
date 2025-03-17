@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import isolateLsb from '../../../src/utils/manipulation/isolateLsb'
-import { unsigned } from '../../../src/utils/helper/fp'
 
 describe('isolateLsb', () => {
   it('should isolate the least significant set bit', () => {
@@ -20,7 +19,7 @@ describe('isolateLsb', () => {
   })
 
   it('should handle large numbers correctly', () => {
-    expect(unsigned(isolateLsb(0x80000000))).toBe(0x80000000)
+    expect(isolateLsb(0x80000000) >>> 0).toBe(0x80000000)
     expect(isolateLsb(0xffffffff)).toBe(1)
   })
 })

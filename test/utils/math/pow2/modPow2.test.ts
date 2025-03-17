@@ -1,5 +1,5 @@
 import { describe, expect, it, test } from 'vitest'
-import modPow2 from '../../../src/utils/math/modPow2'
+import modPow2 from '../../../../src/utils/math/pow2/modPow2'
 
 describe('modPow2', () => {
   test('modulus with various powers of 2', () => {

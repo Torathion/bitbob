@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import iLogPow2 from '../../../src/utils/math/iLogPow2'
+import iLogPow2 from '../../../../src/utils/math/pow2/iLogPow2'
 
 describe('iLogPow2', () => {
   // Test basic functionality with known values

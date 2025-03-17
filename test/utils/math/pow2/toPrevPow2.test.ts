@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import toPrevPow2 from '../../../src/utils/math/toPrevPow2'
+import toPrevPow2 from '../../../../src/utils/math/pow2/toPrevPow2'
 
 describe('toPrevPow2', () => {
   it('returns the largest power of 2 less than or equal to non-power-of-2 inputs', () => {

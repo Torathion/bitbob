@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import toClosestPow2 from '../../../src/utils/math/toClosestPow2'
+import toClosestPow2 from '../../../../src/utils/math/pow2/toClosestPow2'
 
 describe('toClosestPow2', () => {
   it('prefers the higher power on equal distance', () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import unsignedModPow2 from '../../../src/utils/math/unsignedModPow2'
+import unsignedModPow2 from '../../../../src/utils/math/pow2/unsignedModPow2'
 
 describe('unsignedModPow2', () => {
   it('returns the unsigned remainder when x is divided by a power of 2', () => {

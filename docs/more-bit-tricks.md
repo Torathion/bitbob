@@ -133,3 +133,12 @@ Note: There are no algorithms to divide by arbitrary numbers (AFAIK).
 | Math              |  Algorithm                           |
 |-------------------|--------------------------------------|
 | `Math.trunc`      | `x \| 0`                             |
+
+
+## Misc
+
+| Math              |  Algorithm                           |
+|-------------------|--------------------------------------|
+| `% x`             | `& (x - 1)`                          |
+
+- Getting the fraction of a number: `x - (x \| 0)`

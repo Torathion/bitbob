@@ -6,36 +6,20 @@
   <a href="https://www.npmjs.com/package/bitbob"><img src="https://img.shields.io/npm/v/bitbob?style=for-the-badge&logo=npm"/></a>
   <a href="https://npmtrends.com/bitbob"><img src="https://img.shields.io/npm/dm/bitbob?style=for-the-badge"/></a>
   <a href="https://bundlephobia.com/package/bitbob"><img src="https://img.shields.io/bundlephobia/minzip/bitbob?style=for-the-badge"/></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/github/license/Torathion/bitbob?style=for-the-badge"/></a>
+  <a href="https://github.com/Torathion/bitbob/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Torathion/bitbob?style=for-the-badge"/></a>
   <a href="https://codecov.io/gh/torathion/bitbob"><img src="https://codecov.io/gh/torathion/bitbob/branch/main/graph/badge.svg?style=for-the-badge" /></a>
   <a href="https://github.com/torathion/bitbob/actions"><img src="https://img.shields.io/github/actions/workflow/status/torathion/bitbob/build.yml?style=for-the-badge&logo=esbuild"/></a>
 <a href="https://github.com/prettier/prettier#readme"><img alt="code style" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge&logo=prettier"></a>
 </p>
 </p>
 
-Speed up your math with smart little bit hacks from your smart little bit buddy!
+This is a vast collection of bit manipulation algorithms for specific mathematical algorithms. Each function is designed to be as fast and small as possible, while giving correct and stable results.
 
 ```powershell
     pnpm i bitbob
 ```
 
-### More performance through bit manipulation!
-
-Instead of using built-in `Math` functions that are build to be as flexible and broad as possible, bitbob functions only focus on 32-bit integer, i.e. native numbers without a floating point component. This, for example, ups the performance of working with arrays (array indices, array length, array index pointers, ...).
-
-```typescript
-import { min } from 'bitbob'
-
-export default function includes(a: string[], b: string[]): boolean {
-    const len = min(a.length, b.length) // Faster than Math.min!
-    for (let i = 0; i < len; i++) if (a[i] === b[i]) return true
-    return false
-}
-```
-
-Bitbob provides a lot more math replacements. Read [here](https://github.com/Torathion/bitbob/blob/main/docs/math-replacements.md) for more!
-
-Some bit hacks are so small that they are hard to use them as a function because of typical function overhead. Therefore, here is a compiled list of other tiny math optimizations through bit hacks you can do: [List](https://github.com/Torathion/bitbob/blob/main/docs/more-bit-tricks.md)
+ While there are bit hacks for algorithms like `max` or `min`, implementing them in JS and providing them as a function is slower than the actual built-in `Math` functions that directly call C++ code. Some bit hacks are so small that they are hard to use as a function because of typical function overhead. Therefore, here is a compiled list of other tiny math optimizations through bit hacks you can do: [List](https://github.com/Torathion/bitbob/blob/main/docs/more-bit-tricks.md)
 
 ### Reduce your memory usage!
 

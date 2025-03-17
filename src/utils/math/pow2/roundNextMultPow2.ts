@@ -1,4 +1,4 @@
-import { InverseLogSequence } from 'src/constants'
+import { ILog2Sequence } from 'src/constants'
 
 /**
  *  Rounds a given number to the next biggest multiple of the given power of 2.
@@ -8,6 +8,6 @@ import { InverseLogSequence } from 'src/constants'
  *  @returns the rounded number.
  */
 export default function roundNextMultPow2(x: number, y: number): number {
-  const shift = InverseLogSequence[(y * 0x04ad19df) >>> 27]
+  const shift = ILog2Sequence[(y * 0x04ad19df) >>> 27]
   return ((x >> shift) + 1) << shift
 }

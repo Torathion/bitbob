@@ -747,4 +747,31 @@ declare module 'bitbob' {
    *  @returns the bit length of the given number.
    */
   export function length(x: number): number
+  /**
+   *  Returns the next floating point number after any given number towards another floating point number.
+   *
+   * @param x - target number
+   * @param to - bound number
+   * @returns the next floating point number towards the bound number
+   */
+  export function nextAfter(x: number, to: number): number
+  /* De-Bruijin sequence to calculate the inverse log 2 of a power of 2 (or their trailing zeros) */
+  export const ILog2Sequence: Int8Array
+  /**
+   *  Computes the inverse logarithm base 2 of the given number. This number already has to be a power of 2.
+   *
+   *  For arbitrary numbers, use `countTrailingZeros` instead.
+   *
+   *  @param x - The input number to compute the inverse log2 for. Must be a positive integer.
+   *  @returns The approximate inverse log2 value from the precomputed sequence.
+   */
+  export function iLogPow2(x: number): number
+  /**
+   *  Rounds a given number to the next biggest multiple of the given power of 2.
+   *
+   *  @param x - target number.
+   *  @param y - target power of 2.
+   *  @returns the rounded number.
+   */
+  export function roundNextMultPow2(x: number, y: number): number
 }

@@ -13,7 +13,7 @@
 </p>
 </p>
 
-This is a vast collection of bit manipulation algorithms for specific mathematical algorithms. Each function is designed to be as fast and small as possible, while giving correct and stable results.
+This is a vast collection of bit manipulation algorithms for specific mathematical algorithms. Each function is designed to be as fast and small as possible, while giving correct and stable results. It's a tree-shakable library, so only take what you need!
 
 ```powershell
     pnpm i bitbob

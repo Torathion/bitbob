@@ -68,13 +68,22 @@ describe('Bitmap', () => {
     expect(bitmap.state).toBe(6)
   })
 
-  it('checks if a subset of a state meets some criteria', () => {
+  it('checks if a subset of a state meets some criteria (AND)', () => {
     const bitmap = new Bitmap()
     bitmap.apply(2 | 4 | 8 | 64 | 256) // 334 -> 101001110
 
     expect(bitmap.isMet(14)).toBe(true) // 14 = 1110 is included in 334
     expect(bitmap.isMet(320)).toBe(true) // 320 = 101000000 is included in 334
     expect(bitmap.isMet(1)).toBe(false)
+  })
+
+  it('checks if at least one flag of the subset is met (OR)', () => {
+    const bitmap = new Bitmap()
+    bitmap.apply(2 | 4 | 8 | 64 | 256)
+
+    expect(bitmap.has(14)).toBe(true) // Check for multiple true
+    expect(bitmap.has(1 | 2)).toBe(true) // 1 is not set, but 2 (10) is set
+    expect(bitmap.has(0)).toBe(false) // 0 is not set
   })
 
   it('flips the entire state map', () => {

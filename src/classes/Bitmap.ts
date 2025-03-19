@@ -29,9 +29,9 @@ export default class Bitmap {
 
   /**
    *  Clears a field of flags at once (0 counting).
-   * 
-   * @param start - starting bit position.
-   * @param end - ending bit position.
+   *
+   *  @param start - starting bit position.
+   *  @param end - ending bit position.
    */
   clearRange(start: number, end: number): void {
     this.#map &= ~(((2 << ((end - start) - 1)) - 1) << start)
@@ -59,8 +59,8 @@ export default class Bitmap {
    *
    *  This is an equivalent to checking multiple `OR` operations at once.
    *
-   * @param mask - possible flags to check.
-   * @returns `true`, if at least one flag is set, otherwise `false`.
+   *  @param mask - possible flags to check.
+   *  @returns `true`, if at least one flag is set, otherwise `false`.
    */
   has(mask: number): boolean {
     return !!(this.#map & mask)
@@ -95,6 +95,16 @@ export default class Bitmap {
    */
   set(bit: number): void {
     this.#map |= 1 << bit
+  }
+
+  /**
+   *  Sets a field of flags at once (0 counting).
+   *
+   *  @param start - starting bit position.
+   *  @param end - ending bit position.
+   */
+  setRange(start: number, end: number): void {
+    this.#map |= (((2 << ((end - start) - 1)) - 1) << start)
   }
 
   /**

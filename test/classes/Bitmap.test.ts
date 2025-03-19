@@ -2,6 +2,10 @@ import { describe, expect, it, test } from 'vitest'
 import Bitmap from '../../src/classes/Bitmap'
 import rotateLeft from '../../src/utils/manipulation/rotateLeft'
 
+function createFullBitmap(): Bitmap {
+  return new Bitmap(0b1111111111111111111111111111111)
+}
+
 describe('Bitmap', () => {
   it('can create', () => {
     expect(() => new Bitmap()).not.toThrowError()
@@ -87,7 +91,7 @@ describe('Bitmap', () => {
   })
 
   it('flips the entire state map', () => {
-    const bitmap = new Bitmap(0b1111111111111111111111111111111)
+    const bitmap  = createFullBitmap()
     bitmap.flip()
     expect(bitmap.state).toBe(0)
 
@@ -125,13 +129,57 @@ describe('Bitmap', () => {
   })
 
   it('can clear a range of flags', () => {
-    const bitmap = new Bitmap(0b1111111111111111111111111111111)
+    const bitmap  = createFullBitmap()
     bitmap.clearRange(0, 4)
     expect(bitmap.state).toBe(0b1111111111111111111111111110000)
 
-    const bitmap2 = new Bitmap(0b1111111111111111111111111111111)
+    const bitmap2  = createFullBitmap()
     bitmap2.clearRange(2, 7)
     expect(bitmap2.state).toBe(0b1111111111111111111111110000011)
+  })
+
+  describe('clearRange', () => {
+    it('can clear a range of flags', () => {
+      const bitmap  = createFullBitmap()
+      bitmap.clearRange(0, 4)
+      expect(bitmap.state).toBe(0b1111111111111111111111111110000)
+
+      const bitmap2  = createFullBitmap()
+      bitmap2.clearRange(2, 7)
+      expect(bitmap2.state).toBe(0b1111111111111111111111110000011)
+    })
+
+    it('does nothing on already cleared flags', () => {
+      const b1 = new Bitmap()
+      b1.clearRange(0, 15)
+      expect(b1.state).toBe(0)
+
+      const b2 = new Bitmap(15) // First 4 bits sets
+      b2.clearRange(5, 8)
+      expect(b2.state).toBe(15) // Shouldn't touch the first 4 bits
+    })
+  })
+
+  describe('setRange', () => {
+    it('can set a range of flags', () => {
+      const b1 = new Bitmap()
+      b1.setRange(0, 4)
+      expect(b1.state).toBe(15)
+
+      const b2 = new Bitmap()
+      b2.setRange(2, 7)
+      expect(b2.state).toBe(124) // 1111100
+    })
+
+    it('does nothing on already set flags', () => {
+      const b1  = createFullBitmap()
+      b1.setRange(0, 4)
+      expect(b1.state).toBe(0b1111111111111111111111111111111)
+
+      const b2 = new Bitmap(0b1111111111111111111111001111100)
+      b2.setRange(2, 7)
+      expect(b2.state).toBe(0b1111111111111111111111001111100) // Shouldn't touch surrounding flags
+    })
   })
 
   test('state can be altered raw', () => {

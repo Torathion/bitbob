@@ -114,4 +114,13 @@ export default class Bitmap {
   unset(bit: number): void {
     this.#map &= ~(1 << bit)
   }
+
+  /**
+   *  Converts the bitmap to a json-viable string.
+   *
+   *  @returns a json-viables string in form of hte current inner state.
+   */
+  toJSON(): string {
+    return `{ state: ${this.#map} }`
+  }
 }

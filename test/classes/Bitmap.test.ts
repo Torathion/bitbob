@@ -123,4 +123,13 @@ describe('Bitmap', () => {
 
     expect(bitmap.state).toBe(0b1010011100)
   })
+
+  it('can be converted to json', () => {
+    expect(new Bitmap().toJSON()).toBe('{ state: 0 }')
+    
+    const bitmap = new Bitmap()
+    bitmap.set(0)
+    bitmap.set(1)
+    expect(bitmap.toJSON()).toBe('{ state: 3 }')
+  })
 })

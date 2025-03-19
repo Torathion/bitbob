@@ -1,5 +1,5 @@
 import { IndexOutOfBoundsError, StorageOverflowError, ValueOutOfBoundsError } from 'src/errors'
-import { clearField, createRangeMask, length, setField } from 'src/utils'
+import { clearField, length, setField } from 'src/utils'
 
 /**
  *  A data structure that stores multiple smaller numbers in one big number to save space and computation power.
@@ -41,7 +41,7 @@ export default class ComposedNumber {
       this.#state |= value
       pointers.push(reserve)
     } else {
-      const lastPointer = pointers.at(-1)!
+      const lastPointer = pointers[pointers.length - 1]
       // Since the left is always cleared out, we can shift forth without mask.
       this.#state |= value << lastPointer
       pointers.push(lastPointer + reserve)
@@ -58,7 +58,7 @@ export default class ComposedNumber {
     const pointers = this.#pointers
     if (id < 0 || id >= pointers.length) throw new IndexOutOfBoundsError(id)
     const start = pointers[id]
-    return (this.#state & 0xffffffff & createRangeMask(start, pointers[id + 1] - 1)) >>> start
+    return (this.#state & 0xffffffff & (((1 << (pointers[id + 1] - start)) - 1) << start)) >>> start
   }
 
   /**
@@ -113,7 +113,7 @@ export default class ComposedNumber {
     const state = this.#state
     const pointers = this.#pointers
     const xLen = length(value)
-    const mask = (1 << length(value)) - 1
+    const mask = (1 << xLen) - 1
     let pointer: number
     for (let i = pointers.length - 1; i >= 0; i--) {
       pointer = pointers[i]
@@ -127,7 +127,7 @@ export default class ComposedNumber {
     const pointers = this.#pointers
     const len = pointers.length
     const xLen = length(value)
-    const mask = (1 << length(value)) - 1
+    const mask = (1 << xLen) - 1
     let pointer: number
     for (let i = 0; i < len; i++) {
       pointer = pointers[i]

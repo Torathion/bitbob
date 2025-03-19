@@ -124,6 +124,16 @@ describe('Bitmap', () => {
     expect(bitmap.state).toBe(0)
   })
 
+  it('can clear a range of flags', () => {
+    const bitmap = new Bitmap(0b1111111111111111111111111111111)
+    bitmap.clearRange(0, 4)
+    expect(bitmap.state).toBe(0b1111111111111111111111111110000)
+
+    const bitmap2 = new Bitmap(0b1111111111111111111111111111111)
+    bitmap2.clearRange(2, 7)
+    expect(bitmap2.state).toBe(0b1111111111111111111111110000011)
+  })
+
   test('state can be altered raw', () => {
     const bitmap = new Bitmap()
 

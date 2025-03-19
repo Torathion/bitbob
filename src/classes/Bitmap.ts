@@ -21,14 +21,24 @@ export default class Bitmap {
   }
 
   /**
-   *  Clears the entire cached state
+   *  Clears the entire cached state.
    */
   clear(): void {
     this.#map = 0
   }
 
   /**
-   *  Flips the entire state
+   *  Clears a field of flags at once (0 counting).
+   * 
+   * @param start - starting bit position.
+   * @param end - ending bit position.
+   */
+  clearRange(start: number, end: number): void {
+    this.#map &= ~(((2 << ((end - start) - 1)) - 1) << start)
+  }
+
+  /**
+   *  Flips the entire state.
    */
   flip(): void {
     this.#map = ~this.#map & ((1 << 31) - 1)
@@ -37,8 +47,8 @@ export default class Bitmap {
   /**
    *  Flips a field of flags at once (0 counting).
    *
-   *  @param start - starting bit position
-   *  @param end - ending bit position
+   *  @param start - starting bit position.
+   *  @param end - ending bit position.
    */
   flipRange(start: number, end: number): void {
     this.#map ^= ((1 << (end - start + 1)) - 1) << start

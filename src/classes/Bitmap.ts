@@ -21,14 +21,24 @@ export default class Bitmap {
   }
 
   /**
-   *  Clears the entire cached state
+   *  Clears the entire cached state.
    */
   clear(): void {
     this.#map = 0
   }
 
   /**
-   *  Flips the entire state
+   *  Clears a field of flags at once (0 counting).
+   *
+   *  @param start - starting bit position.
+   *  @param end - ending bit position.
+   */
+  clearRange(start: number, end: number): void {
+    this.#map &= ~(((2 << (end - start - 1)) - 1) << start)
+  }
+
+  /**
+   *  Flips the entire state.
    */
   flip(): void {
     this.#map = ~this.#map & ((1 << 31) - 1)
@@ -37,15 +47,29 @@ export default class Bitmap {
   /**
    *  Flips a field of flags at once (0 counting).
    *
-   *  @param start - starting bit position
-   *  @param end - ending bit position
+   *  @param start - starting bit position.
+   *  @param end - ending bit position.
    */
   flipRange(start: number, end: number): void {
     this.#map ^= ((1 << (end - start + 1)) - 1) << start
   }
 
   /**
+   *  Checks if at least one flag of the given mask is set.
+   *
+   *  This is an equivalent to checking multiple `OR` operations at once.
+   *
+   *  @param mask - possible flags to check.
+   *  @returns `true`, if at least one flag is set, otherwise `false`.
+   */
+  has(mask: number): boolean {
+    return !!(this.#map & mask)
+  }
+
+  /**
    *  Checks if a specific subset of a state is met.
+   *
+   *  This is an equivalent to checking multiple `AND` operations at once.
    *
    *  @param mask - subset condition
    *  @returns `true`, if the subset is met, otherwise `false`.
@@ -71,6 +95,16 @@ export default class Bitmap {
    */
   set(bit: number): void {
     this.#map |= 1 << bit
+  }
+
+  /**
+   *  Sets a field of flags at once (0 counting).
+   *
+   *  @param start - starting bit position.
+   *  @param end - ending bit position.
+   */
+  setRange(start: number, end: number): void {
+    this.#map |= ((2 << (end - start - 1)) - 1) << start
   }
 
   /**
@@ -113,5 +147,14 @@ export default class Bitmap {
    */
   unset(bit: number): void {
     this.#map &= ~(1 << bit)
+  }
+
+  /**
+   *  Converts the bitmap to a json-viable string.
+   *
+   *  @returns a json-viables string in form of hte current inner state.
+   */
+  toJSON(): string {
+    return `{ state: ${this.#map} }`
   }
 }

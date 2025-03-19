@@ -18,6 +18,13 @@ declare module 'bitbob' {
      */
     clear(): void
     /**
+     *  Clears a field of flags at once (0 counting).
+     *
+     *  @param start - starting bit position.
+     *  @param end - ending bit position.
+     */
+    clearRange(start: number, end: number): void
+    /**
      *  Flips the entire state.
      */
     flip(): void
@@ -28,6 +35,15 @@ declare module 'bitbob' {
      *  @param end - ending bit position.
      */
     flipRange(start: number, end: number): void
+    /**
+     *  Checks if at least one flag of the given mask is set.
+     *
+     *  This is an equivalent to checking multiple `OR` operations at once.
+     *
+     *  @param mask - possible flags to check.
+     *  @returns `true`, if at least one flag is set, otherwise `false`.
+     */
+    has(mask: number): boolean
     /**
      *  Checks if a specific subset of a state is met.
      *
@@ -49,6 +65,13 @@ declare module 'bitbob' {
      */
     set(bit: number): void
     /**
+     *  Sets a field of flags at once (0 counting).
+     *
+     *  @param start - starting bit position.
+     *  @param end - ending bit position.
+     */
+    setRange(start: number, end: number): void
+    /**
      *  Gets the current state of the bitmap.
      */
     get state(): number
@@ -66,6 +89,12 @@ declare module 'bitbob' {
      *  @param bit - the flag to toggle.
      */
     toggle(bit: number): void
+    /**
+     *  Converts the bitmap to a json-viable string.
+     *
+     *  @returns a json-viables string in form of hte current inner state.
+     */
+    toJSON(): string
     /**
      *  Unsets a specific flag.
      *

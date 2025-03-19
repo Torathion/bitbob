@@ -34,7 +34,7 @@ export default class Bitmap {
    *  @param end - ending bit position.
    */
   clearRange(start: number, end: number): void {
-    this.#map &= ~(((2 << ((end - start) - 1)) - 1) << start)
+    this.#map &= ~(((2 << (end - start - 1)) - 1) << start)
   }
 
   /**
@@ -68,7 +68,7 @@ export default class Bitmap {
 
   /**
    *  Checks if a specific subset of a state is met.
-   * 
+   *
    *  This is an equivalent to checking multiple `AND` operations at once.
    *
    *  @param mask - subset condition
@@ -104,7 +104,7 @@ export default class Bitmap {
    *  @param end - ending bit position.
    */
   setRange(start: number, end: number): void {
-    this.#map |= (((2 << ((end - start) - 1)) - 1) << start)
+    this.#map |= ((2 << (end - start - 1)) - 1) << start
   }
 
   /**

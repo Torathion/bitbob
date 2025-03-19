@@ -91,7 +91,7 @@ describe('Bitmap', () => {
   })
 
   it('flips the entire state map', () => {
-    const bitmap  = createFullBitmap()
+    const bitmap = createFullBitmap()
     bitmap.flip()
     expect(bitmap.state).toBe(0)
 
@@ -129,22 +129,22 @@ describe('Bitmap', () => {
   })
 
   it('can clear a range of flags', () => {
-    const bitmap  = createFullBitmap()
+    const bitmap = createFullBitmap()
     bitmap.clearRange(0, 4)
     expect(bitmap.state).toBe(0b1111111111111111111111111110000)
 
-    const bitmap2  = createFullBitmap()
+    const bitmap2 = createFullBitmap()
     bitmap2.clearRange(2, 7)
     expect(bitmap2.state).toBe(0b1111111111111111111111110000011)
   })
 
   describe('clearRange', () => {
     it('can clear a range of flags', () => {
-      const bitmap  = createFullBitmap()
+      const bitmap = createFullBitmap()
       bitmap.clearRange(0, 4)
       expect(bitmap.state).toBe(0b1111111111111111111111111110000)
 
-      const bitmap2  = createFullBitmap()
+      const bitmap2 = createFullBitmap()
       bitmap2.clearRange(2, 7)
       expect(bitmap2.state).toBe(0b1111111111111111111111110000011)
     })
@@ -172,7 +172,7 @@ describe('Bitmap', () => {
     })
 
     it('does nothing on already set flags', () => {
-      const b1  = createFullBitmap()
+      const b1 = createFullBitmap()
       b1.setRange(0, 4)
       expect(b1.state).toBe(0b1111111111111111111111111111111)
 
@@ -193,7 +193,7 @@ describe('Bitmap', () => {
 
   it('can be converted to json', () => {
     expect(new Bitmap().toJSON()).toBe('{ state: 0 }')
-    
+
     const bitmap = new Bitmap()
     bitmap.set(0)
     bitmap.set(1)

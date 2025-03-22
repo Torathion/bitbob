@@ -30,6 +30,16 @@ describe('Bitmap', () => {
     expect(bitmap.isSet(2)).toBe(true)
   })
 
+  it('can get the state of a flag', () => {
+    const bitmap = new Bitmap()
+    bitmap.set(0)
+    expect(bitmap.get(0)).toBe(true)
+    expect(bitmap.get(1)).toBe(false)
+
+    bitmap.toggle(0)
+    expect(bitmap.get(0)).toBe(false)
+  })
+
   it('can unset a flag', () => {
     const bitmap = new Bitmap()
     bitmap.set(2)

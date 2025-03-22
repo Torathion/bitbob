@@ -1,5 +1,6 @@
 import { IndexOutOfBoundsError, StorageOverflowError, ValueOutOfBoundsError } from 'src/errors'
 import { clearField, length, setField } from 'src/utils'
+import BitHandler from './BitHandler'
 
 /**
  *  A data structure that stores multiple smaller numbers in one big number to save space and computation power.
@@ -7,12 +8,12 @@ import { clearField, length, setField } from 'src/utils'
  *  Numbers are added from right to left, meaning the more numbers you store, the bigger the state. Each number is assigned to a static
  *  field, separated by the pointer start indices. There is the possibility to address move space than currently used.
  */
-export default class ComposedNumber {
-  #state: number
+export default class ComposedNumber extends BitHandler {
   #pointers: number[] = [0]
 
   constructor(initialState = 0, reserve = length(initialState)) {
-    this.#state = initialState
+    super(initialState)
+    this._state = initialState
     if (initialState !== 0) this.#pointers.push(reserve)
   }
 
@@ -23,7 +24,7 @@ export default class ComposedNumber {
    */
   copy(): ComposedNumber {
     const cn = new ComposedNumber()
-    cn.overwrite(this.#state, [...this.#pointers])
+    cn.overwrite(this._state, [...this.#pointers])
     return cn
   }
 
@@ -33,17 +34,17 @@ export default class ComposedNumber {
    *  @param value - number to store
    *  @param reserve - bit length to reserve
    */
-  set(value: number, reserve = length(value)): void {
+  override set(value: number, reserve = length(value)): void {
     if (reserve > this.availableSpace) throw new StorageOverflowError(value)
     const pointers = this.#pointers
     // First number to add
     if (pointers.length === 1) {
-      this.#state |= value
+      this._state |= value
       pointers.push(reserve)
     } else {
       const lastPointer = pointers[pointers.length - 1]
       // Since the left is always cleared out, we can shift forth without mask.
-      this.#state |= value << lastPointer
+      this._state |= value << lastPointer
       pointers.push(lastPointer + reserve)
     }
   }
@@ -54,11 +55,11 @@ export default class ComposedNumber {
    *  @param id - the nth number.
    *  @returns
    */
-  get(id: number): number {
+  override get(id: number): number {
     const pointers = this.#pointers
     if (id < 0 || id >= pointers.length) throw new IndexOutOfBoundsError(id)
     const start = pointers[id]
-    return (this.#state & 0xffffffff & (((1 << (pointers[id + 1] - start)) - 1) << start)) >>> start
+    return (this._state & 0xffffffff & (((1 << (pointers[id + 1] - start)) - 1) << start)) >>> start
   }
 
   /**
@@ -68,7 +69,7 @@ export default class ComposedNumber {
    * @param pointers - new pointers.
    */
   overwrite(state: number, pointers: number[]): void {
-    this.#state = state
+    this._state = state
     this.#pointers = pointers
   }
 
@@ -81,7 +82,7 @@ export default class ComposedNumber {
     const pointers = this.#pointers
     if (id < 0 || id >= pointers.length) throw new IndexOutOfBoundsError(id)
     const ptr = pointers[id]
-    this.#state = clearField(this.#state, pointers[id + 1] - ptr, ptr)
+    this._state = clearField(this._state, pointers[id + 1] - ptr, ptr)
   }
 
   /**
@@ -98,7 +99,7 @@ export default class ComposedNumber {
     const ptr = pointers[id]
     const size = pointers[id + 1] - ptr
     if (size < length(value)) throw new ValueOutOfBoundsError(id)
-    this.#state = setField(this.#state, value, size, ptr)
+    this._state = setField(this._state, value, size, ptr)
   }
 
   /**
@@ -109,8 +110,8 @@ export default class ComposedNumber {
    *  @param value - target value
    *  @returns `true`, if the store has this value stored, otherwise false.
    */
-  has(value: number): boolean {
-    const state = this.#state
+  override has(value: number): boolean {
+    const state = this._state
     const pointers = this.#pointers
     const xLen = length(value)
     const mask = (1 << xLen) - 1
@@ -123,7 +124,7 @@ export default class ComposedNumber {
   }
 
   indexOf(value: number): number {
-    const state = this.#state
+    const state = this._state
     const pointers = this.#pointers
     const len = pointers.length
     const xLen = length(value)
@@ -139,16 +140,9 @@ export default class ComposedNumber {
   /**
    *    Clears the whole storage.
    */
-  clear(): void {
-    this.#state = 0
+  override clear(): void {
+    this._state = 0
     this.#pointers = [0]
-  }
-
-  /**
-   *    Returns the raw state of the composed number.
-   */
-  get state(): number {
-    return this.#state
   }
 
   /**
@@ -169,13 +163,22 @@ export default class ComposedNumber {
    *    Returns the currently available space left in the number in bits.
    */
   get availableSpace(): number {
-    return this.#state === 0 ? 31 : 31 - length(this.#state)
+    return this._state === 0 ? 31 : 31 - length(this._state)
   }
 
   /**
    *  Returns the used space in the number in bits.
    */
   get usedSpace(): number {
-    return this.#state === 1 << 31 ? 31 : length(this.#state)
+    return this._state === 1 << 31 ? 31 : length(this._state)
+  }
+
+  /**
+   *  Converts the bit handler to a json-viable string.
+   *
+   *  @returns a json-viables string in form of hte current inner state.
+   */
+  toJSON(): string {
+    return `{ state: ${this._state}, pointers: ${this.#pointers} }`
   }
 }

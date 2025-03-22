@@ -1,30 +1,19 @@
+import BitHandler from './BitHandler'
+
 /**
  *   A data structure that represents a compact storage of up to 31 different
  *   boolean values by using the conversion of `0` for `false` and `1` for `true`.
  *
  *   It is recommended to use an `enum` for easier handling of this class.
  */
-export default class Bitmap {
-  #map: number
-
-  constructor(initialState = 0) {
-    this.#map = initialState
-  }
-
+export default class Bitmap extends BitHandler {
   /**
    *  Applies a state as a mask to the bitmap.
    *
    *  @param mask - state to apply.
    */
   apply(mask: number): void {
-    this.#map |= mask
-  }
-
-  /**
-   *  Clears the entire cached state.
-   */
-  clear(): void {
-    this.#map = 0
+    this._state |= mask
   }
 
   /**
@@ -34,14 +23,14 @@ export default class Bitmap {
    *  @param end - ending bit position.
    */
   clearRange(start: number, end: number): void {
-    this.#map &= ~(((2 << (end - start - 1)) - 1) << start)
+    this._state &= ~(((2 << (end - start - 1)) - 1) << start)
   }
 
   /**
    *  Flips the entire state.
    */
   flip(): void {
-    this.#map = ~this.#map & ((1 << 31) - 1)
+    this._state = ~this._state & ((1 << 31) - 1)
   }
 
   /**
@@ -51,7 +40,17 @@ export default class Bitmap {
    *  @param end - ending bit position.
    */
   flipRange(start: number, end: number): void {
-    this.#map ^= ((1 << (end - start + 1)) - 1) << start
+    this._state ^= ((1 << (end - start + 1)) - 1) << start
+  }
+
+  /**
+   *  Extracts the bit value of the given bit position.
+   *
+   * @param bit - target bit position.
+   * @returns Either `1` for a set state, otherwise `0`.
+   */
+  override get(bit: number): boolean {
+    return !!((this._state >> bit) & 1)
   }
 
   /**
@@ -62,8 +61,8 @@ export default class Bitmap {
    *  @param mask - possible flags to check.
    *  @returns `true`, if at least one flag is set, otherwise `false`.
    */
-  has(mask: number): boolean {
-    return !!(this.#map & mask)
+  override has(mask: number): boolean {
+    return !!(this._state & mask)
   }
 
   /**
@@ -75,7 +74,7 @@ export default class Bitmap {
    *  @returns `true`, if the subset is met, otherwise `false`.
    */
   isMet(mask: number): boolean {
-    return (this.#map & mask) === mask
+    return (this._state & mask) === mask
   }
 
   /**
@@ -85,7 +84,7 @@ export default class Bitmap {
    *  @returns `true`, if the flag is set, otherwise `false`.
    */
   isSet(bit: number): boolean {
-    return (this.#map & (1 << bit)) !== 0
+    return (this._state & (1 << bit)) !== 0
   }
 
   /**
@@ -94,7 +93,7 @@ export default class Bitmap {
    *  @param bit - the flag to set
    */
   set(bit: number): void {
-    this.#map |= 1 << bit
+    this._state |= 1 << bit
   }
 
   /**
@@ -104,18 +103,7 @@ export default class Bitmap {
    *  @param end - ending bit position.
    */
   setRange(start: number, end: number): void {
-    this.#map |= ((2 << (end - start - 1)) - 1) << start
-  }
-
-  /**
-   *   Returns the current state of the map.
-   */
-  get state(): number {
-    return this.#map
-  }
-
-  set state(newState: number) {
-    this.#map = newState
+    this._state |= ((2 << (end - start - 1)) - 1) << start
   }
 
   /**
@@ -123,7 +111,7 @@ export default class Bitmap {
    */
   get activeStates(): number {
     let count = 0
-    let map = this.#map
+    let map = this._state
     while (map) {
       count++
       map &= map - 1 // Removes the lowest set bit
@@ -137,7 +125,7 @@ export default class Bitmap {
    *  @param bit - the flag to toggle
    */
   toggle(bit: number): void {
-    this.#map ^= 1 << bit
+    this._state ^= 1 << bit
   }
 
   /**
@@ -146,15 +134,6 @@ export default class Bitmap {
    *  @param bit - the flag to unset
    */
   unset(bit: number): void {
-    this.#map &= ~(1 << bit)
-  }
-
-  /**
-   *  Converts the bitmap to a json-viable string.
-   *
-   *  @returns a json-viables string in form of hte current inner state.
-   */
-  toJSON(): string {
-    return `{ state: ${this.#map} }`
+    this._state &= ~(1 << bit)
   }
 }

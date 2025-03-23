@@ -31,14 +31,35 @@ describe('Bitmap', () => {
     expect(bitmap.has(2)).toBe(true)
   })
 
-  it('can get the state of a flag', () => {
-    const bitmap = new Bitmap()
-    bitmap.set(1)
-    expect(bitmap.get(0)).toBe(true)
-    expect(bitmap.get(1)).toBe(false)
+  describe('get', () => {
+    it('can get the state of a flag', () => {
+      const bitmap = new Bitmap()
+      bitmap.set(1)
+      expect(bitmap.get(1)).toBe(true)
+      expect(bitmap.get(2)).toBe(false)
 
-    bitmap.toggle(1)
-    expect(bitmap.get(0)).toBe(false)
+      bitmap.toggle(1)
+      expect(bitmap.get(1)).toBe(false)
+    })
+
+    it('works with states', () => {
+      const bitmap = new Bitmap()
+      const Test = createBitmapStates(['A', 'B', 'C', 'D', 'E', 'F'])
+
+      bitmap.set(Test.A)
+      bitmap.set(Test.C)
+
+      expect(bitmap.get(Test.A)).toBe(true)
+      expect(bitmap.get(Test.B)).toBe(false)
+      expect(bitmap.get(Test.C)).toBe(true)
+
+      bitmap.toggle(Test.A)
+      bitmap.toggle(Test.B)
+
+      expect(bitmap.get(Test.A)).toBe(false)
+      expect(bitmap.get(Test.B)).toBe(true)
+      expect(bitmap.get(Test.C)).toBe(true)
+    })
   })
 
   it('can unset a flag', () => {

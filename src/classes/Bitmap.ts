@@ -50,7 +50,7 @@ export default class Bitmap extends BitHandler {
    * @returns Either `1` for a set state, otherwise `0`.
    */
   override get(bit: number): boolean {
-    return !!((this._state >> bit) & 1)
+    return !!((this._state >> (bit >> 1)) & 1)
   }
 
   /**

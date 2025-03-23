@@ -1,6 +1,6 @@
 {
   "name": "bitbob",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A big collection of tiny bit hacks from your tiny bit buddy!",
   "types": "./index.d.ts",
   "main": "./dist/index.js",

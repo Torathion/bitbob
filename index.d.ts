@@ -136,12 +136,6 @@ declare module 'bitbob' {
      */
     toggle(bit: number): void
     /**
-     *  Converts the bitmap to a json-viable string.
-     *
-     *  @returns a json-viable string in form of hte current inner state.
-     */
-    toJSON(): string
-    /**
      *  Unset a specific flag from a bitmap state. It takes a power of 2 as an argument.
      *
      *  @param bit - the flag to unset.
@@ -353,7 +347,7 @@ declare module 'bitbob' {
    * @param keys - names of each state.
    * @returns the generated lookup table.
    */
-  export function createBitmapStates(keys: string[]): Record<string, number>
+  export function createBitmapStates<T extends string>(keys: readonly T[]): Record<T, number>
   /**
    *  Creates a mask beginning from a starting index to an end index (0 counting).
    *

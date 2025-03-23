@@ -1,30 +1,19 @@
+import BitHandler from './BitHandler'
+
 /**
  *   A data structure that represents a compact storage of up to 31 different
  *   boolean values by using the conversion of `0` for `false` and `1` for `true`.
  *
  *   It is recommended to use an `enum` for easier handling of this class.
  */
-export default class Bitmap {
-  #map: number
-
-  constructor(initialState = 0) {
-    this.#map = initialState
-  }
-
+export default class Bitmap extends BitHandler {
   /**
    *  Applies a state as a mask to the bitmap.
    *
    *  @param mask - state to apply.
    */
   apply(mask: number): void {
-    this.#map |= mask
-  }
-
-  /**
-   *  Clears the entire cached state.
-   */
-  clear(): void {
-    this.#map = 0
+    this._state |= mask
   }
 
   /**
@@ -34,14 +23,14 @@ export default class Bitmap {
    *  @param end - ending bit position.
    */
   clearRange(start: number, end: number): void {
-    this.#map &= ~(((2 << (end - start - 1)) - 1) << start)
+    this._state &= ~(((2 << (end - start - 1)) - 1) << start)
   }
 
   /**
    *  Flips the entire state.
    */
   flip(): void {
-    this.#map = ~this.#map & ((1 << 31) - 1)
+    this._state = ~this._state & ((1 << 31) - 1)
   }
 
   /**
@@ -51,19 +40,17 @@ export default class Bitmap {
    *  @param end - ending bit position.
    */
   flipRange(start: number, end: number): void {
-    this.#map ^= ((1 << (end - start + 1)) - 1) << start
+    this._state ^= ((1 << (end - start + 1)) - 1) << start
   }
 
   /**
-   *  Checks if at least one flag of the given mask is set.
+   *  Extracts the bit value of the given bit position.
    *
-   *  This is an equivalent to checking multiple `OR` operations at once.
-   *
-   *  @param mask - possible flags to check.
-   *  @returns `true`, if at least one flag is set, otherwise `false`.
+   * @param bit - target bit position.
+   * @returns Either `1` for a set state, otherwise `0`.
    */
-  has(mask: number): boolean {
-    return !!(this.#map & mask)
+  override get(bit: number): boolean {
+    return !!((this._state >> (bit >> 1)) & 1)
   }
 
   /**
@@ -72,29 +59,30 @@ export default class Bitmap {
    *  This is an equivalent to checking multiple `AND` operations at once.
    *
    *  @param mask - subset condition
-   *  @returns `true`, if the subset is met, otherwise `false`.
+   *  @returns `true`, if the condition is met, otherwise `false`.
    */
   isMet(mask: number): boolean {
-    return (this.#map & mask) === mask
+    return (this._state & mask) === mask
   }
 
   /**
    *  Checks if a specific flag (bit) is set.
+   *  This also has the ability to check for multiple states at once, acting as an OR operation.
    *
-   *  @param bit - the flag to check.
-   *  @returns `true`, if the flag is set, otherwise `false`.
+   *  @param bit - the flag(s) to check.
+   *  @returns `true`, if the condition is met, otherwise `false`.
    */
-  isSet(bit: number): boolean {
-    return (this.#map & (1 << bit)) !== 0
+  override has(bit: number): boolean {
+    return !!(this._state & bit)
   }
 
   /**
-   *  Sets a specific flag
+   *  Sets a specific flag from a bitmap state. It takes a power of 2 as an argument.
    *
    *  @param bit - the flag to set
    */
   set(bit: number): void {
-    this.#map |= 1 << bit
+    this._state |= bit
   }
 
   /**
@@ -104,18 +92,7 @@ export default class Bitmap {
    *  @param end - ending bit position.
    */
   setRange(start: number, end: number): void {
-    this.#map |= ((2 << (end - start - 1)) - 1) << start
-  }
-
-  /**
-   *   Returns the current state of the map.
-   */
-  get state(): number {
-    return this.#map
-  }
-
-  set state(newState: number) {
-    this.#map = newState
+    this._state |= ((2 << (end - start - 1)) - 1) << start
   }
 
   /**
@@ -123,7 +100,7 @@ export default class Bitmap {
    */
   get activeStates(): number {
     let count = 0
-    let map = this.#map
+    let map = this._state
     while (map) {
       count++
       map &= map - 1 // Removes the lowest set bit
@@ -132,29 +109,20 @@ export default class Bitmap {
   }
 
   /**
-   *  Toggles a specific flag
+   *  Toggles a specific flag from a bitmap state. It takes a power of 2 as an argument.
    *
    *  @param bit - the flag to toggle
    */
   toggle(bit: number): void {
-    this.#map ^= 1 << bit
+    this._state ^= bit
   }
 
   /**
-   *  Unset a specific flag
+   *  Unset a specific flag from a bitmap state. It takes a power of 2 as an argument.
    *
    *  @param bit - the flag to unset
    */
   unset(bit: number): void {
-    this.#map &= ~(1 << bit)
-  }
-
-  /**
-   *  Converts the bitmap to a json-viable string.
-   *
-   *  @returns a json-viables string in form of hte current inner state.
-   */
-  toJSON(): string {
-    return `{ state: ${this.#map} }`
+    this._state &= ~bit
   }
 }

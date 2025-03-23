@@ -1,11 +1,30 @@
 # Changelog
 
+## [3.0.0] 03-23-2025
+
+### Breaking
+
+- Changed how `Bitmap` states are used and parsed. Check the demo code in the README.
+- Replaced `isSet` of `Bitmap` with `has` as they have the same logic.
+- Adjusted `Bitmap` logic to completely remove inconsistencies of arguments being either bit positions or powers of 2. Now almost all functions only accept powers of 2.
+
+### Changed
+
+- Improved performance of `ComposedNumber`.
+- Add abstract class `BitHandler` to unify bit sequence handler classes and help templating them.
+- Adds `createBitmapStates` helper function to easily create `Bitmap` states.
+- Adjust types and documentation
+
 ## [2.0.0] 03-17-2025
 
-- !!BREAKING!!: Removed every function that acted like a replacement to the `Math` built-in
-- !!BREAKING!!: Removed every functional programming function
-- !!BREAKING!!: Removed every constant except `INT32_MAX` and `INT32_MIN`
-- !!BREAKING!!: Renamed `INT32_MAX` and `INT32_MIN` to `I32_MAX` and `I32_MIN`
+### Breaking
+
+- Removed every function that acted like a replacement to the `Math` built-in
+- Removed every functional programming function
+- Removed every constant except `INT32_MAX` and `INT32_MIN`
+- Renamed `INT32_MAX` and `INT32_MIN` to `I32_MAX` and `I32_MIN`
+
+### Changed
 
 - Added `roundNextMultPow2` to round to the next multiple of a power of 2
 - Added `iLogPow2` to calculate the inverse logarithm of a power of 2

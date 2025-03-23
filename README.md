@@ -1,7 +1,7 @@
 # bitbob
 
 <p align="center">
-<h1 align="center">Core bit math for faster performance</h1>
+<h1 align="center">Core bit manipulated algorithms for faster performance</h1>
 <p align="center">
   <a href="https://www.npmjs.com/package/bitbob"><img src="https://img.shields.io/npm/v/bitbob?style=for-the-badge&logo=npm"/></a>
   <a href="https://npmtrends.com/bitbob"><img src="https://img.shields.io/npm/dm/bitbob?style=for-the-badge"/></a>
@@ -27,27 +27,35 @@ Data structures sometimes come with a very complex lifecycle to, for example, ha
 
 ```typescript
 
-import { BitMap } from 'bitbob'
+import { BitMap, createBitmapStates } from 'bitbob'
 
-const enum States {
-    Starting, // 0b1
-    Closing, // 0b10
-    Scrolling // 0b100
-    Zooming, // 0b1000
-    Traversing // 0b10000
-}
+// This creates a LUT (lookup table) for the Bitmap structure to work with.
+// The values of the parsed array are the keys and each key-value pair is a different power of 2, depending on the order of the given keys.
+const States = createBitmapStates([
+    'Starting', // 0b1
+    'Closing', // 0b10
+    'Scrolling' // 0b100
+    'Zooming', // 0b1000
+    'Traversing', // 0b10000
+    'Passthrough' // 0b100000
+])
 
 export default class Component {
     states = new BitMap()
 
     update() {
-        if (this.states.isSet(States.Closing)) return cleanup()
+        // Checks for one state
+        if (this.states.has(States.Closing)) return cleanup()
+        // Checks for multiple states at once. This reduces the number of needed checks as this is an AND operation!
         else if (this.states.isMet(States.Scrolling | States.Zooming)) { // = 12 = 1100
+            // `has` can also check for multiple states at once, acting as an OR operation!
+            if (this.states.has(States.Traversing | States.Passthrough))
             this.move()
-        } 
+        }
     }
 
     scroll() {
+        // Each set state is isolated from another and can not interfere with others.
         this.states.set(States.Scrolling)
     }
 
@@ -69,11 +77,13 @@ This is not everything. You can also store numbers inside numbers!
 import { ComposedNumber } from 'bitbob'
 
 function handleScreenRes(data: number) {
+    // Apply bit maks to extract values without much performance issues.
     const height = data & 0x3FF         // Width = 1020 AND 10 bit mask
     const width = data >> 10 & 0x7FF    // Height = 1980 AND 11 bit mask plus shift to right from previous number
     return //...
 }
 
+// ComposedNumber takes care that each given number is stored properly without collisions
 const cn = new ComposedNumber()
 cn.set(1020)
 cn.set(1980)

@@ -1,0 +1,7 @@
+export { default as iLogPow2 } from './iLogPow2'
+export { default as modPow2 } from './modPow2'
+export { default as roundNextMultPow2 } from './roundNextMultPow2'
+export { default as toClosestPow2 } from './toClosestPow2'
+export { default as toNextPow2 } from './toNextPow2'
+export { default as toPrevPow2 } from './toPrevPow2'
+export { default as unsignedModPow2 } from './unsignedModPow2'

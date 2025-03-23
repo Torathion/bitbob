@@ -1,6 +1,7 @@
 import { describe, expect, it, test } from 'vitest'
 import Bitmap from '../../src/classes/Bitmap'
 import rotateLeft from '../../src/utils/manipulation/rotateLeft'
+import createBitmapStates from '../../src/utils/helper/createBitmapStates'
 
 function createFullBitmap(): Bitmap {
   return new Bitmap(0b1111111111111111111111111111111)
@@ -13,12 +14,12 @@ describe('Bitmap', () => {
 
   it('can set a state', () => {
     const bitmap = new Bitmap()
-    bitmap.set(2)
+    bitmap.set(4)
 
     expect(bitmap.state).not.toBe(0)
     expect(bitmap.state).toBe(4) // 100
 
-    bitmap.set(4)
+    bitmap.set(16)
     expect(bitmap.state).toBe(20) // 10100
   })
 
@@ -27,37 +28,65 @@ describe('Bitmap', () => {
 
     bitmap.set(2)
 
-    expect(bitmap.isSet(2)).toBe(true)
+    expect(bitmap.has(2)).toBe(true)
+  })
+
+  describe('get', () => {
+    it('can get the state of a flag', () => {
+      const bitmap = new Bitmap()
+      bitmap.set(1)
+      expect(bitmap.get(1)).toBe(true)
+      expect(bitmap.get(2)).toBe(false)
+
+      bitmap.toggle(1)
+      expect(bitmap.get(1)).toBe(false)
+    })
+
+    it('works with states', () => {
+      const bitmap = new Bitmap()
+      const Test = createBitmapStates(['A', 'B', 'C', 'D', 'E', 'F'])
+
+      bitmap.set(Test.A)
+      bitmap.set(Test.C)
+
+      expect(bitmap.get(Test.A)).toBe(true)
+      expect(bitmap.get(Test.B)).toBe(false)
+      expect(bitmap.get(Test.C)).toBe(true)
+
+      bitmap.toggle(Test.A)
+      bitmap.toggle(Test.B)
+
+      expect(bitmap.get(Test.A)).toBe(false)
+      expect(bitmap.get(Test.B)).toBe(true)
+      expect(bitmap.get(Test.C)).toBe(true)
+    })
   })
 
   it('can unset a flag', () => {
     const bitmap = new Bitmap()
     bitmap.set(2)
 
-    expect(bitmap.isSet(2)).toBe(true)
+    expect(bitmap.has(2)).toBe(true)
 
     bitmap.unset(2)
 
-    expect(bitmap.isSet(2)).toBe(false)
+    expect(bitmap.has(2)).toBe(false)
   })
 
   it('can toggle a flag', () => {
     const bitmap = new Bitmap()
     bitmap.toggle(2)
 
-    expect(bitmap.isSet(2)).toBe(true)
+    expect(bitmap.has(2)).toBe(true)
 
     bitmap.toggle(2)
 
-    expect(bitmap.isSet(2)).toBe(false)
+    expect(bitmap.has(2)).toBe(false)
   })
 
   it('can rest the whole state map', () => {
     const bitmap = new Bitmap()
-    bitmap.set(0)
-    bitmap.set(1)
-    bitmap.set(2)
-    bitmap.set(4)
+    bitmap.apply(1 | 2 | 4 | 16)
 
     expect(bitmap.state).not.toBe(0)
 
@@ -72,22 +101,85 @@ describe('Bitmap', () => {
     expect(bitmap.state).toBe(6)
   })
 
-  it('checks if a subset of a state meets some criteria (AND)', () => {
-    const bitmap = new Bitmap()
-    bitmap.apply(2 | 4 | 8 | 64 | 256) // 334 -> 101001110
+  describe('isMet', () => {
+    it('checks if a subset of a state meets some criteria (AND)', () => {
+      const bitmap = new Bitmap()
+      bitmap.apply(2 | 4 | 8 | 64 | 256) // 334 -> 101001110
 
-    expect(bitmap.isMet(14)).toBe(true) // 14 = 1110 is included in 334
-    expect(bitmap.isMet(320)).toBe(true) // 320 = 101000000 is included in 334
-    expect(bitmap.isMet(1)).toBe(false)
+      expect(bitmap.isMet(14)).toBe(true) // 14 = 1110 is included in 334
+      expect(bitmap.isMet(320)).toBe(true) // 320 = 101000000 is included in 334
+      expect(bitmap.isMet(1)).toBe(false)
+    })
+
+    it('only checks for the targeted bits', () => {
+      const b1 = new Bitmap(0b1111111111111111000)
+
+      expect(b1.isMet(1 | 2 | 4)).toBe(false)
+      expect(b1.isMet(8 | 16)).toBe(true)
+      expect(b1.isMet(4 | 8 | 16)).toBe(false)
+
+      const b2 = new Bitmap(0b0011000)
+      expect(b2.isMet(1 | 2)).toBe(false)
+      expect(b2.isMet(4 | 8)).toBe(false)
+      expect(b2.isMet(8 | 16)).toBe(true)
+      expect(b2.isMet(16 | 32)).toBe(false)
+    })
+
+    it('works with state maps', () => {
+      const bitmap = new Bitmap()
+      const Test = createBitmapStates(['A', 'B', 'C', 'D', 'E', 'F'])
+
+      bitmap.set(Test.A)
+      bitmap.set(Test.C)
+      expect(bitmap.isMet(Test.A | Test.C)).toBe(true)
+      expect(bitmap.isMet(Test.A | Test.B)).toBe(false)
+      expect(bitmap.isMet(Test.C | Test.D)).toBe(false)
+
+      bitmap.unset(Test.A)
+      bitmap.set(Test.B)
+
+      expect(bitmap.isMet(Test.A | Test.C)).toBe(false)
+      expect(bitmap.isMet(Test.C | Test.B)).toBe(true)
+    })
   })
 
-  it('checks if at least one flag of the subset is met (OR)', () => {
-    const bitmap = new Bitmap()
-    bitmap.apply(2 | 4 | 8 | 64 | 256)
+  describe('has', () => {
+    it('checks if at least one flag of the subset is met (OR)', () => {
+      const bitmap = new Bitmap()
+      bitmap.apply(2 | 4 | 8 | 64 | 256)
 
-    expect(bitmap.has(14)).toBe(true) // Check for multiple true
-    expect(bitmap.has(1 | 2)).toBe(true) // 1 is not set, but 2 (10) is set
-    expect(bitmap.has(0)).toBe(false) // 0 is not set
+      expect(bitmap.has(14)).toBe(true) // Check for multiple true
+      expect(bitmap.has(1 | 2)).toBe(true) // 1 is not set, but 2 (10) is set
+      expect(bitmap.has(0)).toBe(false) // 0 is not set
+    })
+
+    it('only checks for the targeted bits', () => {
+      const b1 = new Bitmap(0b111000)
+
+      expect(b1.has(1 | 2 | 4)).toBe(false)
+      expect(b1.has(8)).toBe(true)
+      expect(b1.has(1 | 8 | 256)).toBe(true)
+      expect(b1.has(1 | 256)).toBe(false)
+    })
+
+    it('works with state maps', () => {
+      const bitmap = new Bitmap()
+      const Test = createBitmapStates(['A', 'B', 'C', 'D', 'E', 'F'])
+
+      bitmap.set(Test.A)
+      bitmap.set(Test.C)
+      expect(bitmap.has(Test.A | Test.C)).toBe(true)
+      expect(bitmap.has(Test.A | Test.B)).toBe(true)
+      expect(bitmap.has(Test.C | Test.D)).toBe(true)
+      expect(bitmap.has(Test.B | Test.D)).toBe(false)
+
+      bitmap.unset(Test.A)
+      bitmap.set(Test.B)
+
+      expect(bitmap.has(Test.A | Test.C)).toBe(true)
+      expect(bitmap.has(Test.A | Test.B)).toBe(true)
+      expect(bitmap.has(Test.D | Test.A)).toBe(false)
+    })
   })
 
   it('flips the entire state map', () => {
@@ -195,8 +287,8 @@ describe('Bitmap', () => {
     expect(new Bitmap().toJSON()).toBe('{ state: 0 }')
 
     const bitmap = new Bitmap()
-    bitmap.set(0)
     bitmap.set(1)
+    bitmap.set(2)
     expect(bitmap.toJSON()).toBe('{ state: 3 }')
   })
 })

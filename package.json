@@ -38,7 +38,7 @@
   "type": "module",
   "license": "MIT",
   "devDependencies": {
-    "@rollup/rollup-win32-ia32-msvc": "^4.36.0",
+    "@rollup/rollup-win32-ia32-msvc": "^4.37.0",
     "@vitest/coverage-v8": "^3.0.9",
     "esbuild": "^0.25.1",
     "eslint": "^9.23.0",

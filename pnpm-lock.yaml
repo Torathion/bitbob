@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@rollup/rollup-win32-ia32-msvc':
-        specifier: ^4.36.0
-        version: 4.36.0
+        specifier: ^4.37.0
+        version: 4.37.0
       '@vitest/coverage-v8':
         specifier: ^3.0.9
         version: 3.0.9(vitest@3.0.9(@types/node@22.9.0)(jiti@2.4.2)(stylus@0.57.0)(terser@5.39.0))
@@ -649,8 +649,9 @@ packages:
     cpu: [ia32]
     os: [win32]
 
-  '@rollup/rollup-win32-ia32-msvc@4.36.0':
-    resolution: {integrity: sha512-t+RY0JuRamIocMuQcfwYSOkmdX9dtkr1PbhKW42AMvaDQa+jOdpUYysroTF/nuPpAaQMWp7ye+ndlmmthieJrQ==}
+  '@rollup/rollup-win32-ia32-msvc@4.37.0':
+    resolution: {integrity: sha512-e3/1SFm1OjefWICB2Ucstg2dxYDkDTZGDYgwufcbsxTHyqQps1UQf33dFEChBNmeSsTOyrjw2JJq0zbG5GF6RA==}
+    cpu: [ia32]
     os: [win32]
 
   '@rollup/rollup-win32-x64-msvc@4.34.8':
@@ -3349,7 +3350,7 @@ snapshots:
   '@rollup/rollup-win32-ia32-msvc@4.34.8':
     optional: true
 
-  '@rollup/rollup-win32-ia32-msvc@4.36.0': {}
+  '@rollup/rollup-win32-ia32-msvc@4.37.0': {}
 
   '@rollup/rollup-win32-x64-msvc@4.34.8':
     optional: true

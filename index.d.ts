@@ -82,28 +82,20 @@ declare module 'bitbob' {
      */
     flipRange(start: number, end: number): void
     /**
-     *  Checks if at least one flag of the given mask is set.
+     *  Checks if a specific flag (bit) is set.
+     *  This also has the ability to check for multiple states at once, acting as an OR operation.
      *
-     *  This is an equivalent to checking multiple `OR` operations at once.
-     *
-     *  @param mask - possible flags to check.
-     *  @returns `true`, if at least one flag is set, otherwise `false`.
+     *  @param bit - the flag(s) to check.
+     *  @returns `true`, if the condition is met, otherwise `false`.
      */
     has(mask: number): boolean
     /**
      *  Checks if a specific subset of a state is met.
      *
      *  @param mask - subset condition.
-     *  @returns `true`, if the subset is met, otherwise `false`.
+     *  @returns `true`, if the condition is met, otherwise `false`.
      */
     isMet(mask: number): boolean
-    /**
-     *  Checks if a specific flag (bit) is set.
-     *
-     *  @param bit - the flag to check.
-     *  @returns `true`, if the flag is set, otherwise `false`.
-     */
-    isSet(bit: number): boolean
     /**
      *  Sets a specific flag.
      *

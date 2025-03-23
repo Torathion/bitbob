@@ -54,24 +54,12 @@ export default class Bitmap extends BitHandler {
   }
 
   /**
-   *  Checks if at least one flag of the given mask is set.
-   *
-   *  This is an equivalent to checking multiple `OR` operations at once.
-   *
-   *  @param mask - possible flags to check.
-   *  @returns `true`, if at least one flag is set, otherwise `false`.
-   */
-  override has(mask: number): boolean {
-    return !!(this._state & mask)
-  }
-
-  /**
    *  Checks if a specific subset of a state is met.
    *
    *  This is an equivalent to checking multiple `AND` operations at once.
    *
    *  @param mask - subset condition
-   *  @returns `true`, if the subset is met, otherwise `false`.
+   *  @returns `true`, if the condition is met, otherwise `false`.
    */
   isMet(mask: number): boolean {
     return (this._state & mask) === mask
@@ -79,12 +67,13 @@ export default class Bitmap extends BitHandler {
 
   /**
    *  Checks if a specific flag (bit) is set.
+   *  This also has the ability to check for multiple states at once, acting as an OR operation.
    *
-   *  @param bit - the flag to check.
-   *  @returns `true`, if the flag is set, otherwise `false`.
+   *  @param bit - the flag(s) to check.
+   *  @returns `true`, if the condition is met, otherwise `false`.
    */
-  isSet(bit: number): boolean {
-    return (this._state & bit) !== 0
+  override has(bit: number): boolean {
+    return !!(this._state & bit)
   }
 
   /**

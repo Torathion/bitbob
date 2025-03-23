@@ -28,7 +28,7 @@ describe('Bitmap', () => {
 
     bitmap.set(2)
 
-    expect(bitmap.isSet(2)).toBe(true)
+    expect(bitmap.has(2)).toBe(true)
   })
 
   it('can get the state of a flag', () => {
@@ -45,22 +45,22 @@ describe('Bitmap', () => {
     const bitmap = new Bitmap()
     bitmap.set(2)
 
-    expect(bitmap.isSet(2)).toBe(true)
+    expect(bitmap.has(2)).toBe(true)
 
     bitmap.unset(2)
 
-    expect(bitmap.isSet(2)).toBe(false)
+    expect(bitmap.has(2)).toBe(false)
   })
 
   it('can toggle a flag', () => {
     const bitmap = new Bitmap()
     bitmap.toggle(2)
 
-    expect(bitmap.isSet(2)).toBe(true)
+    expect(bitmap.has(2)).toBe(true)
 
     bitmap.toggle(2)
 
-    expect(bitmap.isSet(2)).toBe(false)
+    expect(bitmap.has(2)).toBe(false)
   })
 
   it('can rest the whole state map', () => {

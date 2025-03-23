@@ -6,7 +6,7 @@
 
 - Changed how `Bitmap` states are used and parsed. Check the demo code in the README.
 - Replaced `isSet` of `Bitmap` with `has` as they have the same logic.
-- Adjusted `Bitmap` logic to completely remove inconsistencies of arguments being either bit positions or powers of 2. Now all functions only accept powers of 2.
+- Adjusted `Bitmap` logic to completely remove inconsistencies of arguments being either bit positions or powers of 2. Now almost all functions only accept powers of 2.
 
 ### Changed
 

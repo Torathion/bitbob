@@ -84,7 +84,7 @@ export default class Bitmap extends BitHandler {
    *  @returns `true`, if the flag is set, otherwise `false`.
    */
   isSet(bit: number): boolean {
-    return (this._state & (1 << bit)) !== 0
+    return (this._state & bit) !== 0
   }
 
   /**
@@ -134,6 +134,6 @@ export default class Bitmap extends BitHandler {
    *  @param bit - the flag to unset
    */
   unset(bit: number): void {
-    this._state &= ~(1 << bit)
+    this._state &= ~bit
   }
 }

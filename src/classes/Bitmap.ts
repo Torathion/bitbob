@@ -88,12 +88,12 @@ export default class Bitmap extends BitHandler {
   }
 
   /**
-   *  Sets a specific flag
+   *  Sets a specific flag from a bitmap state. It takes a power of 2 as an argument.
    *
    *  @param bit - the flag to set
    */
   set(bit: number): void {
-    this._state |= 1 << bit
+    this._state |= bit
   }
 
   /**
@@ -120,16 +120,16 @@ export default class Bitmap extends BitHandler {
   }
 
   /**
-   *  Toggles a specific flag
+   *  Toggles a specific flag from a bitmap state. It takes a power of 2 as an argument.
    *
    *  @param bit - the flag to toggle
    */
   toggle(bit: number): void {
-    this._state ^= 1 << bit
+    this._state ^= bit
   }
 
   /**
-   *  Unset a specific flag
+   *  Unset a specific flag from a bitmap state. It takes a power of 2 as an argument.
    *
    *  @param bit - the flag to unset
    */

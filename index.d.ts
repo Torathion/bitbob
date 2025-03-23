@@ -1,5 +1,51 @@
 declare module 'bitbob' {
   /**
+   *  Templating class to create unified bit sequence handlers.
+   */
+  export abstract class BitHandler {
+    /**
+     *  Internal bit sequence.
+     */
+    protected _state: number
+    /**
+     *  Sets a specific value in the bit sequence.
+     *
+     * @param value - value / position to set.
+     */
+    abstract set(value: number): void
+    /**
+     *  Extracts a specific value in a primitive type from the bit sequence.
+     *
+     * @param value position to get.
+     */
+    abstract get(value: number): number | boolean
+    /**
+     *  Checks if a specific value is met.
+     *
+     * @param value - value / position to check for.
+     */
+    abstract has(value: number): void
+    /**
+     *  Clears the entire state.
+     */
+    clear(): void
+    /**
+     *   Returns the current state of the map.
+     */
+    get state(): number
+    /**
+     *  Replaces the state with a completely new one.
+     */
+    set state(value: number)
+    /**
+     *  Converts the bit handler to a json-viable string.
+     *
+     *  @returns a json-viables string in form of the current inner state.
+     */
+    toJSON(): string
+  }
+
+  /**
    *   A data structure that represents a compact storage of up to 31 different
    *   boolean values by using the conversion of `0` for `false` and `1` for `true`.
    *
@@ -76,7 +122,7 @@ declare module 'bitbob' {
      */
     get state(): number
     /**
-     *  Sets a new state for the bitmap.
+     * Sets a specific flag from a bitmap state. It takes a power of 2 as an argument.
      */
     set state(newState: number)
     /**
@@ -84,7 +130,7 @@ declare module 'bitbob' {
      */
     get activeStates(): number
     /**
-     *  Toggles a specific flag.
+     *  Toggles a specific flag from a bitmap state. It takes a power of 2 as an argument.
      *
      *  @param bit - the flag to toggle.
      */
@@ -92,11 +138,11 @@ declare module 'bitbob' {
     /**
      *  Converts the bitmap to a json-viable string.
      *
-     *  @returns a json-viables string in form of hte current inner state.
+     *  @returns a json-viable string in form of hte current inner state.
      */
     toJSON(): string
     /**
-     *  Unsets a specific flag.
+     *  Unset a specific flag from a bitmap state. It takes a power of 2 as an argument.
      *
      *  @param bit - the flag to unset.
      */
@@ -108,7 +154,7 @@ declare module 'bitbob' {
    * Numbers are added from right to left, meaning the more numbers you store, the bigger the state. Each number is assigned to a static
    * field, separated by the pointer start indices. There is the possibility to address more space than currently used.
    */
-  export default class ComposedNumber {
+  export class ComposedNumber {
     constructor(initialState?: number, reserve?: number)
     /**
      * Copies the current `ComposedNumber` into a new one.
@@ -131,7 +177,7 @@ declare module 'bitbob' {
      */
     get(id: number): number
     /**
-     * !!DANGER!! Entirely overwrites the state and pointers of the number.
+     * Entirely overwrites the state and pointers of the number.
      *
      * @param state - New state.
      * @param pointers - New pointers.
@@ -301,6 +347,13 @@ declare module 'bitbob' {
    *  @returns true, if both numbers loosely equal by the given threshold, otherwise false.
    */
   export function looseCompare(x: number, y: number, threshold: number): boolean
+  /**
+   *  Creates a state LUT (lookup table) for the `Bitmap` class to manage state.
+   *
+   * @param keys - names of each state.
+   * @returns the generated lookup table.
+   */
+  export function createBitmapStates(keys: string[]): Record<string, number>
   /**
    *  Creates a mask beginning from a starting index to an end index (0 counting).
    *

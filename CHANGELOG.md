@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.0.1] 03-24-2025
+
+- Fix `get` function of `Bitmap` not found (#15) by @ElPrudi
+- Fix `get` of `Bitmap` not working with big powers of 2 (#15) by @ElPrudi
+
 ## [3.0.0] 03-23-2025
 
 ### Breaking

@@ -60,6 +60,26 @@ describe('Bitmap', () => {
       expect(bitmap.get(Test.B)).toBe(true)
       expect(bitmap.get(Test.C)).toBe(true)
     })
+
+    it('works with large states', () => {
+      const bitmap = new Bitmap()
+      const Test = createBitmapStates(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'])
+
+      bitmap.set(Test.L)
+      bitmap.set(Test.M)
+
+      expect(bitmap.get(Test.A)).toBe(false)
+      expect(bitmap.get(Test.L)).toBe(true)
+      expect(bitmap.get(Test.M)).toBe(true)
+
+      bitmap.toggle(Test.L)
+      bitmap.toggle(Test.M)
+      bitmap.toggle(Test.I)
+
+      expect(bitmap.get(Test.L)).toBe(false)
+      expect(bitmap.get(Test.M)).toBe(false)
+      expect(bitmap.get(Test.I)).toBe(true)
+    })
   })
 
   it('can unset a flag', () => {

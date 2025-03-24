@@ -61,7 +61,7 @@ describe('Bitmap', () => {
       expect(bitmap.get(Test.C)).toBe(true)
     })
 
-    it('works with large states', () => {
+    it('works with large powers of 2', () => {
       const bitmap = new Bitmap()
       const Test = createBitmapStates(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'])
 

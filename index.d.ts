@@ -51,7 +51,7 @@ declare module 'bitbob' {
    *
    *   It is recommended to use an `enum` for easier handling of this class.
    */
-  export class Bitmap {
+  export class Bitmap extends BitHandler {
     constructor(initialState?: number)
     /**
      *  Applies a state as a mask to the bitmap.
@@ -81,6 +81,13 @@ declare module 'bitbob' {
      *  @param end - ending bit position.
      */
     flipRange(start: number, end: number): void
+      /**
+       *  Extracts the bit value of the given bit position.
+       *
+       * @param bit - target bit position.
+       * @returns Either `1` for a set state, otherwise `0`.
+       */
+      override get(bit: number): boolean
     /**
      *  Checks if a specific flag (bit) is set.
      *  This also has the ability to check for multiple states at once, acting as an OR operation.
@@ -88,7 +95,7 @@ declare module 'bitbob' {
      *  @param bit - the flag(s) to check.
      *  @returns `true`, if the condition is met, otherwise `false`.
      */
-    has(mask: number): boolean
+    override has(mask: number): boolean
     /**
      *  Checks if a specific subset of a state is met.
      *
@@ -101,7 +108,7 @@ declare module 'bitbob' {
      *
      *  @param bit - the flag to set.
      */
-    set(bit: number): void
+    override set(bit: number): void
     /**
      *  Sets a field of flags at once (0 counting).
      *
@@ -140,7 +147,7 @@ declare module 'bitbob' {
    * Numbers are added from right to left, meaning the more numbers you store, the bigger the state. Each number is assigned to a static
    * field, separated by the pointer start indices. There is the possibility to address more space than currently used.
    */
-  export class ComposedNumber {
+  export class ComposedNumber extends BitHandler {
     constructor(initialState?: number, reserve?: number)
     /**
      * Copies the current `ComposedNumber` into a new one.
@@ -154,14 +161,14 @@ declare module 'bitbob' {
      * @param value - Number to store.
      * @param reserve - Bit length to reserve.
      */
-    set(value: number, reserve?: number): void
+    override set(value: number, reserve?: number): void
     /**
      * Returns the nth number stored inside the composed number.
      *
      * @param id - The nth number.
      * @returns The stored number.
      */
-    get(id: number): number
+    override get(id: number): number
     /**
      * Entirely overwrites the state and pointers of the number.
      *
@@ -188,7 +195,7 @@ declare module 'bitbob' {
      * @param value - Target value.
      * @returns `true` if the store has this value stored, otherwise `false`.
      */
-    has(value: number): boolean
+    override has(value: number): boolean
     /**
      * Finds the index of a stored number.
      *

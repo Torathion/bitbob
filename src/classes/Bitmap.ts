@@ -1,3 +1,4 @@
+import { ILog2Sequence } from 'src/constants'
 import BitHandler from './BitHandler'
 
 /**
@@ -50,7 +51,7 @@ export default class Bitmap extends BitHandler {
    * @returns Either `1` for a set state, otherwise `0`.
    */
   override get(bit: number): boolean {
-    return !!((this._state >> (bit >> 1)) & 1)
+    return !!((this._state >>  ILog2Sequence[(bit * 0x04ad19df) >>> 27]) & 1)
   }
 
   /**
